@@ -1,3 +1,5 @@
+package module;
+
 public class KmpMatch {
 
     public static int kmp(String str, String match) {
