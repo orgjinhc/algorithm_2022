@@ -30,8 +30,8 @@ public class FindTargetSumWays_494 {
         return subs(arr, index + 1, selected, target) + subs(arr, index + 1, noSelected, target);
     }
 
-    public static void main(String[] args) {
-        int[] arr = {1, 1, 1, 1, 1};
-        System.out.println(findTargetSumWays(arr, 3));
-    }
+	public static void main(String[] args) {
+		int[] arr = {1, 1, 1, 1, 1};
+		System.out.println(findTargetSumWays(arr, 3));
+	}
 }
