@@ -1,7 +1,5 @@
 package leetcode.hot_100;
 
-import apple.laf.JRSUIUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +26,18 @@ public class IsSymmetric_101 {
 
 
     public static class TreeNode {
-        Integer val;
+        int val;
         TreeNode left;
         TreeNode right;
 
         TreeNode() {
         }
 
-        TreeNode(Integer val) {
+        TreeNode(int val) {
             this.val = val;
         }
 
-        TreeNode(Integer val, TreeNode left, TreeNode right) {
+        TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
             this.right = right;
@@ -119,12 +117,12 @@ public class IsSymmetric_101 {
         TreeNode left = new TreeNode(2);
         TreeNode right = new TreeNode(2);
         TreeNode leftLeft = new TreeNode(2);
-        TreeNode leftRight = new TreeNode(null);
+//        TreeNode leftRight = new TreeNode(null);
         TreeNode rightLeft = new TreeNode(2);
         root.left = left;
         root.right = right;
         left.left = leftLeft;
-        left.right = leftRight;
+//        left.right = leftRight;
         right.left = rightLeft;
         System.out.println(isSymmetric1(root));
     }
