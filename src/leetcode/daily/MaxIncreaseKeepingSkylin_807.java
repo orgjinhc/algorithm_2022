@@ -10,8 +10,54 @@ package leetcode.daily;
  */
 public class MaxIncreaseKeepingSkylin_807 {
 
+
+    /**
+     * [
+     * [3, 0, 8, 4],
+     * [2, 4, 5, 7],
+     * [9, 2, 6, 3],
+     * [0, 3, 1, 0]
+     * ]
+     *
+     * @param grid
+     * @return
+     */
     public int maxIncreaseKeepingSkyline(int[][] grid) {
 
+        if (null == grid) {
+            return 0;
+        }
+        int R = grid.length;
+        int C = grid[0].length;
+        int[] rowMax = new int[R];
+        int[] colMax = new int[C];
+
+        //  R[]
+        for (int i = 0; i < R; i++) {
+            int RMax = Integer.MIN_VALUE;
+            for (int j = 0; j < C; j++) {
+                RMax = Math.max(RMax, grid[i][j]);
+            }
+            rowMax[i] = RMax;
+        }
+
+        //  C[]
+        for (int j = 0; j < C; j++) {
+            int CMax = Integer.MIN_VALUE;
+            for (int i = 0; i < R; i++) {
+                CMax = Math.max(CMax, grid[i][j]);
+            }
+            colMax[j] = CMax;
+        }
+
+        int ans = 0;
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                ans += Math.min(rowMax[i], colMax[j]) - grid[i][j];
+            }
+        }
+
+        return ans;
     }
 
     public static void main(String[] args) {
