@@ -27,10 +27,10 @@ public class LongestPalindrome_05 {
         }
         //  奇数个字符和偶数个字符存在差异性, 统一处理一下
         String target = processSourceStr(s);
+        int left = 0;
+        int right = 0;
         int max = 1;
-        String ans = "";
         for (int i = 1; i < target.length(); i++) {
-            LinkedList<Character> queue = new LinkedList<>();
             //  双指针
             int L = i - 1;
             int R = i + 1;
@@ -39,21 +39,25 @@ public class LongestPalindrome_05 {
                 if (target.charAt(L) != target.charAt(R)) {
                     break;
                 }
-                if ((L & 1) != 0) {
-                    queue.addFirst(target.charAt(L));
-                    queue.addLast(target.charAt(R));
-                }
-                if (R - L + 1 > max) {
-                    ans = queue.toString();
+                //  当前得到的最大距离大于目前最大距离max, 更新
+                if ((R - L + 1) > max) {
+                    left = L / 2;
+                    right = R / 2;
                     max = R - L + 1;
                 }
                 L--;
                 R++;
             }
         }
-        return ans.substring(1, ans.length() - 1).replace(",", "");
+        return s.substring(left, right);
     }
 
+    /**
+     * 处理源串
+     *
+     * @param s
+     * @return
+     */
     public static String processSourceStr(String s) {
         StringBuffer sb = new StringBuffer();
         String shift_3 = "#";
@@ -64,7 +68,7 @@ public class LongestPalindrome_05 {
     }
 
     public static void main(String[] args) {
-        String s = "cbbd";
+        String s = "baab";
         System.out.println(longestPalindrome(s));
     }
 }

@@ -31,7 +31,6 @@ public class MaxIncreaseKeepingSkylin_807 {
         int C = grid[0].length;
         int[] rowMax = new int[R];
         int[] colMax = new int[C];
-
         //  R[]
         for (int i = 0; i < R; i++) {
             int RMax = Integer.MIN_VALUE;
@@ -40,7 +39,6 @@ public class MaxIncreaseKeepingSkylin_807 {
             }
             rowMax[i] = RMax;
         }
-
         //  C[]
         for (int j = 0; j < C; j++) {
             int CMax = Integer.MIN_VALUE;
@@ -49,14 +47,12 @@ public class MaxIncreaseKeepingSkylin_807 {
             }
             colMax[j] = CMax;
         }
-
         int ans = 0;
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
                 ans += Math.min(rowMax[i], colMax[j]) - grid[i][j];
             }
         }
-
         return ans;
     }
 
