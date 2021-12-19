@@ -23,6 +23,7 @@ public class IsHappy_202 {
                 //  sum = 1^2 + 7^2
                 int index = n % 10;
                 sum += index * index;
+                //  抹掉一位
                 n /= 10;
             }
             //  n 重新赋值
