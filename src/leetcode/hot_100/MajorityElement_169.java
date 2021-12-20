@@ -1,5 +1,6 @@
 package leetcode.hot_100;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,18 @@ import java.util.Map;
  * 升级:给定一个大小为 n 的整数数组，找出其中所有出现超过 ⌊ n/3 ⌋ 次的元素。
  */
 public class MajorityElement_169 {
+    /**
+     * 摩尔投票
+     * 最优解
+     *
+     * @param nums
+     * @return
+     */
+    public static int majorityElement2(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
+
 
     /**
      * 摩尔投票
