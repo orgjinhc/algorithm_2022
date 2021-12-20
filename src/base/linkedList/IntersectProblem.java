@@ -77,7 +77,6 @@ public class IntersectProblem {
      * @return
      */
     public static Node isIntersection(Node node1, Node node2) {
-
         if (node1 == null || node2 == null) {
             return null;
         }
