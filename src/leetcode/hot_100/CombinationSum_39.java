@@ -1,6 +1,7 @@
 package leetcode.hot_100;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,37 +26,70 @@ public class CombinationSum_39 {
      * @param target
      * @return
      */
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> ansList = new ArrayList<>();
-        if (candidates == null || candidates.length < 1) {
-            return ansList;
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> combine = new ArrayList<>();
+        DFS(candidates, target, ans, combine, 0);
+        return ans;
+    }
+
+    public static void DFS(int[] candidates, int target, List<List<Integer>> ans, List<Integer> combine, int index) {
+        if (index == candidates.length) {
+            return;
         }
+        //  找到一组答案
+        if (target == 0) {
+            ans.add(new ArrayList<>(combine));
+            return;
+        }
+        //  直接跳过
+        DFS(candidates, target, ans, combine, index + 1);
+        //  计算剩余数
+        int remainingNum = target - candidates[index];
+        //  满足条件继续递归当前数
+        if (remainingNum >= 0) {
+            combine.add(candidates[index]);
+            DFS(candidates, remainingNum, ans, combine, index);
+            combine.remove(combine.size() - 1);
+        }
+    }
 
-        for (int L = 0; L < candidates.length; L++) {
-            int candidate = candidates[L];
-            if (candidate == target) {
-                List<Integer> ans = new ArrayList<>();
-                ans.add(target);
-                ansList.add(ans);
-            } else if (target % candidate == 0) {
-                List<Integer> ans = new ArrayList<>();
-                int size = target / candidate;
-                while (size > 0) {
-                    ans.add(candidate);
-                    size--;
-                }
-                ansList.add(ans);
-            } else {
+    public static List<List<Integer>> customCombinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> combine = new ArrayList<>();
+        /**
+         * 整个数组需要从小到大排序后, 才能进行下面的剪支行为
+         */
+        Arrays.sort(candidates);
+        dfs(candidates, target, ans, combine, 0);
+        return ans;
+    }
 
+    public static void dfs(int[] candidates, int target, List<List<Integer>> ans, List<Integer> combine, int index) {
+        if (target == 0) {
+            ans.add(new ArrayList<>(combine));
+        }
+        for (int i = index; i < candidates.length; i++) {
+            int remainingNum = target - candidates[i];
+            /**
+             * 可以进行优化
+             * 剪支逻辑
+             */
+            if (remainingNum < 0) {
+                break;
             }
-
+            //  添加答案
+            combine.add(candidates[i]);
+            //  以当前位置不断的进行尝试, 直到不满足的位置出现后。最后一次不满足场景退出
+            dfs(candidates, remainingNum, ans, combine, i);
+            //  恢复现场
+            combine.remove(combine.size() - 1);
         }
-
-        return null;
     }
 
     /**
-     * 
+     * 前缀和
+     *
      * @param nums
      * @return
      */
@@ -69,12 +103,31 @@ public class CombinationSum_39 {
         return ans;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {2,3,5};
-        int[] ints = prefixSum(nums);
-        for (int i : ints) {
-            System.out.print(" " + i);
+    /**
+     * 后缀和
+     *
+     * @param nums
+     * @return
+     */
+    public static int[] suffixSum(int[] nums) {
+        int N = nums.length;
+        int[] ans = new int[N];
+        int index = N - 1;
+        ans[index] = nums[index];
+        for (int i = N - 2; i >= 0; i--) {
+            ans[index - 1] = ans[index--] + nums[i];
         }
-        System.out.println();
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 3, 6, 7};
+        List<List<Integer>> ans = customCombinationSum(nums, 7);
+        for (List<Integer> list : ans) {
+            for (Integer integer : list) {
+                System.out.print(" " + integer);
+            }
+            System.out.println();
+        }
     }
 }
