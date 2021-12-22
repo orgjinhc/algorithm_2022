@@ -1,5 +1,7 @@
 package leetcode.daily;
 
+import static leetcode.SortUtil.reverse;
+
 /**
  * 给你一个数组，将数组中的元素向右轮转 k'个位置，其中'k'是非负数。
  * 示例 1:
@@ -26,20 +28,6 @@ public class Rotate_189 {
         reverse(nums, N - k, N - 1);
         reverse(nums, 0, N - 1);
     }
-
-    public static void reverse(int[] nums, int L, int R) {
-        while (L <= R) {
-            swap(nums, L++, R--);
-        }
-    }
-
-    public static void swap(int[] nums, int L, int R) {
-        int tmp = nums[R];
-        nums[R] = nums[L];
-        nums[L] = tmp;
-    }
-
-
     public static void main(String[] args) {
         int[] nums = {1, 2};
         rotate(nums, 3);
