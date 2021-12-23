@@ -1,4 +1,4 @@
-package leetcode.top;
+package leetcode.top.medium;
 
 public class StringToInteger_8 {
 
