@@ -1,9 +1,6 @@
 package leetcode.hot_100;
 
-import leetcode.SortUtil;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,6 +19,15 @@ public class MinWindow_76_Undo {
         if (s.equals(t)) {
             return s;
         }
+
+        if (t.length() == 1) {
+            int idx = s.indexOf(t);
+            if (idx == -1) {
+                return "";
+            }
+            return t;
+        }
+
         int maxSize = 0;
         List<List<Integer>> levelList = new ArrayList<>();
 
@@ -46,28 +52,11 @@ public class MinWindow_76_Undo {
             }
         }
 
-        int[] ans = new int[2];
-        //  求最小覆盖字串
-        int colSize = levelList.get(0).size();
-        int rowSize = levelList.size();
-        int lessMore = Integer.MIN_VALUE;
-        for (int col = 0; col < colSize; col++) {
-            int max = Integer.MIN_VALUE;
-            int min = Integer.MAX_VALUE;
-            for (int row = 0; row < rowSize; row++) {
-                Integer index = levelList.get(row).get(col);
-                max = Math.max(max, index);
-                min = Math.min(min, index);
-            }
-            if (lessMore < max - min) {
-                lessMore = max - min;
-                ans[0] = min;
-                ans[1] = max;
-            }
-        }
-        return s.substring(ans[0], ans[1] + 1);
+        int[] boundary = getBoundary(levelList);
+        int len = boundary[1] - boundary[0] + 1;
+        int remaining = len - t.length();
+        return remaining >= 0 ? s.substring(boundary[0], boundary[1] + 1) : s.substring(boundary[0], boundary[1] - remaining + 1);
     }
-
 
     public static List<Integer> process(String s, String index) {
         List<Integer> ans = new ArrayList<>();
@@ -79,6 +68,63 @@ public class MinWindow_76_Undo {
         return ans;
     }
 
+    private static int[] getBoundary(List<List<Integer>> gridList) {
+        int N = gridList.size();
+        int startIndex = N - 2;
+        List<List<Integer>> comboList = new ArrayList<>();
+        for (int i = startIndex; i >= 0; i--) {
+            if (i != startIndex) {
+                comboList = comboSource(comboList, gridList.get(i));
+            } else {
+                comboList = combo(gridList.get(i), gridList.get(i + 1));
+            }
+        }
+        int[] ans = new int[2];
+        int lessMore = Integer.MAX_VALUE;
+        for (List<Integer> subList : comboList) {
+            int max = Integer.MIN_VALUE;
+            int min = Integer.MAX_VALUE;
+            for (Integer integer : subList) {
+                max = Math.max(max, integer);
+                min = Math.min(min, integer);
+            }
+            if (lessMore > max - min) {
+                lessMore = max - min;
+                ans[0] = min;
+                ans[1] = max;
+            }
+        }
+        return ans;
+    }
+
+    public static List<List<Integer>> comboSource(List<List<Integer>> comboList, List<Integer> sourceList) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for (Integer integer : sourceList) {
+
+            for (List<Integer> subList : comboList) {
+                List<Integer> curAns = new ArrayList<>();
+                curAns.add(integer);
+                for (Integer integer1 : subList) {
+                    curAns.add(integer1);
+                }
+                ans.add(curAns);
+            }
+        }
+        return ans;
+    }
+
+    public static List<List<Integer>> combo(List<Integer> sourceList1, List<Integer> sourceList2) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for (Integer num1 : sourceList1) {
+            for (Integer nums2 : sourceList2) {
+                List<Integer> curAns = new ArrayList<>();
+                curAns.add(num1);
+                curAns.add(nums2);
+                ans.add(curAns);
+            }
+        }
+        return ans;
+    }
 
     /**
      * "cabwefgewcwaefgcf"
@@ -95,39 +141,8 @@ public class MinWindow_76_Undo {
      * @param args
      */
     public static void main(String[] args) {
-//        System.out.println(minWindow("cabwefgewcwaefgcf", "cae"));
-        int[][] grid = {
-                {0, 9, 15},
-                {1, 11, 11},
-                {4, 7, 12}
-        };
-        int M = grid.length;
-        int N = grid[0].length;
-    }
-
-    public static int[][] process(int[][] grid) {
-
-        int M = grid.length;
-        if (M >= 2) {
-            int len1 = grid[0].length;
-            int len2 = grid[1].length;
-            int newlen = len1 * len2;
-            int[] temp = new int[newlen];
-            int index = 0;
-            for (int i = 0; i < len1; i++) {
-                for (int j = 0; j < len2; j++) {
-                    temp[index] = Integer.parseInt(grid[0][i] + "|" + grid[1][j]);
-                    index++;
-                }
-            }
-            int[][] newArray = new int[M - 1][];
-            for (int i = 2; i < M; i++) {
-                newArray[i - 1] = grid[i];
-            }
-            newArray[0] = temp;
-            return process(newArray);
-        } else {
-            return grid;
-        }
+        String sourceStr = "acbbaca";
+        String targetStr = "aba";
+        System.out.println(minWindow(sourceStr, targetStr));
     }
 }
