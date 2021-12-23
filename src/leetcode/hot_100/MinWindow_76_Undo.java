@@ -3,6 +3,7 @@ package leetcode.hot_100;
 import leetcode.SortUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * s = "ADOBECODEBANC",
  * t = "A  B C"
  */
-public class MinWindow_76 {
+public class MinWindow_76_Undo {
 
     public static String minWindow(String s, String t) {
         if (s.length() < t.length()) {
@@ -104,4 +105,29 @@ public class MinWindow_76 {
         int N = grid[0].length;
     }
 
+    public static int[][] process(int[][] grid) {
+
+        int M = grid.length;
+        if (M >= 2) {
+            int len1 = grid[0].length;
+            int len2 = grid[1].length;
+            int newlen = len1 * len2;
+            int[] temp = new int[newlen];
+            int index = 0;
+            for (int i = 0; i < len1; i++) {
+                for (int j = 0; j < len2; j++) {
+                    temp[index] = Integer.parseInt(grid[0][i] + "|" + grid[1][j]);
+                    index++;
+                }
+            }
+            int[][] newArray = new int[M - 1][];
+            for (int i = 2; i < M; i++) {
+                newArray[i - 1] = grid[i];
+            }
+            newArray[0] = temp;
+            return process(newArray);
+        } else {
+            return grid;
+        }
+    }
 }
