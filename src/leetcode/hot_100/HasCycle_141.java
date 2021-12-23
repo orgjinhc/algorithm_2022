@@ -1,6 +1,6 @@
 package leetcode.hot_100;
 
-import leetcode.ListNode;
+import leetcode.util.ListNode;
 
 /**
  * 给你一个链表的头节点 head ，判断链表中是否有环。

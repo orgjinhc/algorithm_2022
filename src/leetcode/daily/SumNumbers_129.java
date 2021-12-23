@@ -1,6 +1,6 @@
 package leetcode.daily;
 
-import leetcode.TreeNode;
+import leetcode.util.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

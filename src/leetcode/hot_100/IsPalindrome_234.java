@@ -1,10 +1,8 @@
 package leetcode.hot_100;
 
-import leetcode.ListNode;
+import leetcode.util.ListNode;
 
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
 /**
  * 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。

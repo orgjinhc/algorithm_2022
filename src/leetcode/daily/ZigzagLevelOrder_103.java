@@ -1,7 +1,6 @@
 package leetcode.daily;
 
-import leetcode.TreeNode;
-import leetcode.hot_100.IsSymmetric_101;
+import leetcode.util.TreeNode;
 
 import java.util.*;
 

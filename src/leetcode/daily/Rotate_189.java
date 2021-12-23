@@ -1,6 +1,6 @@
 package leetcode.daily;
 
-import static leetcode.SortUtil.reverse;
+import static leetcode.util.LCUtil.reverse;
 
 /**
  * 给你一个数组，将数组中的元素向右轮转 k'个位置，其中'k'是非负数。

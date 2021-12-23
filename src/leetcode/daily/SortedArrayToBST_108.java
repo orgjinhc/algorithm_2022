@@ -1,11 +1,6 @@
 package leetcode.daily;
 
-import base.arr.MaxHeap;
-import leetcode.TreeNode;
-import leetcode.hot_100.IsSymmetric_101;
-
-import java.util.List;
-import java.util.PriorityQueue;
+import leetcode.util.TreeNode;
 
 /**
  * 给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。

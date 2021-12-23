@@ -1,8 +1,8 @@
-package leetcode;
+package leetcode.util;
 
 import java.util.List;
 
-public class SortUtil {
+public class LCUtil {
 
     public static void reverse(int[] nums, int L, int R) {
         while (L <= R) {
