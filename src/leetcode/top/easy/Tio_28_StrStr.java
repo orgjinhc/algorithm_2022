@@ -1,6 +1,6 @@
 package leetcode.top.easy;
 
-public class StrStr_28 {
+public class Tio_28_StrStr {
 
     public static int strStr(String haystack, String needle) {
         if (needle.equals("")) {

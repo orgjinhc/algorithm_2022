@@ -23,7 +23,7 @@ package leetcode.top.easy;
  * <p>
  * 链接：https://leetcode-cn.com/problems/longest-common-prefix
  */
-public class LongestCommonPrefix_14 {
+public class Top_14_LongestCommonPrefix {
 
     public static String longestCommonPrefix(String[] strs) {
         String ans = strs[0];

@@ -2,7 +2,7 @@ package leetcode.top.easy;
 
 import leetcode.util.LCUtil;
 
-public class RemoveDuplicates_26 {
+public class Tio_26_RemoveDuplicates {
 
     /**
      * 输入：nums = [0,0,1,1,1,2,2,3,3,4]

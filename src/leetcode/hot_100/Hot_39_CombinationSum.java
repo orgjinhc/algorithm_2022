@@ -13,7 +13,7 @@ import java.util.List;
  * <p>
  * 链接：https://leetcode-cn.com/problems/combination-sum
  */
-public class CombinationSum_39 {
+public class Hot_39_CombinationSum {
 
     /**
      * 输入: candidates = [2,3,6,7], target = 7

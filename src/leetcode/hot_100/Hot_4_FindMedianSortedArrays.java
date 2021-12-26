@@ -9,7 +9,7 @@ import leetcode.util.LCUtil;
  * <p>
  * 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
  */
-public class FindMedianSortedArrays_4 {
+public class Hot_4_FindMedianSortedArrays {
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int[] ans = merge(nums1, nums2);

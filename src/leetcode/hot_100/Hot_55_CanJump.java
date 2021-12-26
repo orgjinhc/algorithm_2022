@@ -25,7 +25,7 @@ package leetcode.hot_100;
  * <p>
  * 链接：https://leetcode-cn.com/problems/jump-game
  */
-public class CanJump_55 {
+public class Hot_55_CanJump {
 
     public static boolean canJump(int[] nums) {
         int N = nums.length;
