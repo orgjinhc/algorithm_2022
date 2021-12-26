@@ -1,7 +1,7 @@
 package leetcode.hot_100;
 
-import leetcode.ListNode;
-import leetcode.SortUtil;
+import leetcode.util.LCUtil;
+import leetcode.util.ListNode;
 
 import java.util.Stack;
 
@@ -75,6 +75,6 @@ public class AddTwoNumbers_2 {
         tail2.next = tail3;
         tail3.next = tail4;
 
-        SortUtil.print(addTwoNumbers2(head1, tail1));
+        LCUtil.print(addTwoNumbers2(head1, tail1));
     }
 }
