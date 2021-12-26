@@ -31,4 +31,12 @@ public class SortUtil {
             System.out.println();
         }
     }
+
+    public static void print(ListNode listNode) {
+        while (listNode != null) {
+            System.out.print("  " + listNode.val);
+            listNode = listNode.next;
+        }
+        System.out.println();
+    }
 }
