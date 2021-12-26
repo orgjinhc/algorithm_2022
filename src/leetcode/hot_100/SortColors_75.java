@@ -1,6 +1,6 @@
 package leetcode.hot_100;
 
-import leetcode.SortUtil;
+import leetcode.util.LCUtil;
 
 import java.util.Arrays;
 
@@ -44,16 +44,16 @@ public class SortColors_75 {
         int F = 1;
         while (F <= R) {
             if (L < F && nums[F] == 0) {
-                SortUtil.swap(nums, L, F);
+                LCUtil.swap(nums, L, F);
                 L++;
             } else if (R > F && nums[F] == 2) {
-                SortUtil.swap(nums, R, F);
+                LCUtil.swap(nums, R, F);
                 R--;
             } else {
                 if (nums[F] < nums[L]) {
-                    SortUtil.swap(nums, F, L);
+                    LCUtil.swap(nums, F, L);
                 } else if (nums[F] > nums[R]) {
-                    SortUtil.swap(nums, F, R);
+                    LCUtil.swap(nums, F, R);
                 } else {
                     F++;
                 }

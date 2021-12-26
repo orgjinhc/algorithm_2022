@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.util;
 
 public class Node {
     public int val;

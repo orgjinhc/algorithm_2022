@@ -1,6 +1,6 @@
 package leetcode.daily;
 
-import leetcode.Node;
+import leetcode.util.Node;
 
 import java.util.LinkedList;
 

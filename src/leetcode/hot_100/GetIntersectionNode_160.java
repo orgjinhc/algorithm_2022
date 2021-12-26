@@ -1,6 +1,6 @@
 package leetcode.hot_100;
 
-import leetcode.ListNode;
+import leetcode.util.ListNode;
 
 import java.util.HashSet;
 import java.util.Set;
