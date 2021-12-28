@@ -1,6 +1,6 @@
 package leetcode.top.medium;
 
-public class StringToInteger_8 {
+public class Top_8_StringToInteger {
 
     public static int myAtoi(String s) {
         if (s == null || s.length() == 0) {

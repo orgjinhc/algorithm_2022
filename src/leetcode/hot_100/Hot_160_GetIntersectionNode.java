@@ -27,7 +27,7 @@ import java.util.Set;
  * <p>
  * 链接：https://leetcode-cn.com/problems/intersection-of-two-linked-lists
  */
-public class GetIntersectionNode_160 {
+public class Hot_160_GetIntersectionNode {
 
     /**
      * 官方

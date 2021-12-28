@@ -28,7 +28,7 @@ import java.util.Map;
  * <p>
  * 链接：https://leetcode-cn.com/problems/climbing-stairs
  */
-public class ClimbStairs_70 {
+public class Hot_70_ClimbStairs {
 
     public static Map<Integer, Integer> dp = new HashMap<>();
 

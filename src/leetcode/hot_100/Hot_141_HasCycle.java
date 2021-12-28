@@ -11,7 +11,7 @@ import leetcode.util.ListNode;
  * <p>
  * 链接：https://leetcode-cn.com/problems/linked-list-cycle
  */
-public class HasCycle_141 {
+public class Hot_141_HasCycle {
 
 
     /**

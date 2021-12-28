@@ -6,7 +6,7 @@ import base.tree.TreeNode;
  * 给定一棵树的前序遍历 preorder 与中序遍历  inorder。请构造二叉树并返回其根节点。
  * https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
  */
-public class BuildTree_105 {
+public class Hot_105_BuildTree {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (null == preorder || null == inorder || preorder.length != inorder.length) {

@@ -7,7 +7,7 @@ package leetcode.hot_100;
  * <p>
  * 链接：https://leetcode-cn.com/problems/word-search
  */
-public class Exist_79 {
+public class Hot_79_Exist {
 
     /**
      * 输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"

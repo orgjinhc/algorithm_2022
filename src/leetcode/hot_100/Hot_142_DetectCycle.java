@@ -12,7 +12,7 @@ import leetcode.util.ListNode;
  * <p>
  * 链接：https://leetcode-cn.com/problems/linked-list-cycle-ii
  */
-public class DetectCycle_142 {
+public class Hot_142_DetectCycle {
 
     public ListNode detectCycle(ListNode head) {
         if (null == head || head.next == null) {
