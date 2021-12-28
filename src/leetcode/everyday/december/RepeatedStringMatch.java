@@ -43,10 +43,7 @@ public class RepeatedStringMatch {
         builder.append(a);
         ++ans;
         idx = builder.indexOf(b);
-        if (idx == -1) {
-            return -1;
-        }
-        return ans;
+        return idx == -1 ? -1 : ans;
     }
 
     public static void main(String[] args) {

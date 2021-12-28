@@ -1,7 +1,5 @@
 package leetcode.top.hard;
 
-import leetcode.util.LCUtil;
-
 /**
  * 编写一个程序，通过填充空格来解决数独问题。
  * <p>
@@ -15,6 +13,10 @@ import leetcode.util.LCUtil;
  * 链接：https://leetcode-cn.com/problems/sudoku-solver
  */
 public class Top_37_SolveSudoku {
+
+    /**
+     * @param board
+     */
     public static void solveSudoku(char[][] board) {
         boolean[][] row = new boolean[board.length][board[0].length + 1];
         boolean[][] col = new boolean[board.length][board[0].length + 1];
