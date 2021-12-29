@@ -39,7 +39,6 @@ public class Hot_121_MaxProfit_121 {
 
         //  ansIndex[0] 买入 ansIndex[1] 卖出
         int[][] ansIndex = new int[N][2];
-        int min = 0;
         for (int i = 0; i < N; i++) {
             ansIndex[i][0] = prices[i];
             ansIndex[i][1] = rightMax[i];
@@ -55,7 +54,7 @@ public class Hot_121_MaxProfit_121 {
     }
 
     public static void main(String[] args) {
-        int[] nums = {7,1,5,3,6,4};
-        System.out.println(maxProfit(nums));
+        int[] nums = {1, 2, 3, 4, 5};
+        System.out.println(maxProfit2(nums));
     }
 }
