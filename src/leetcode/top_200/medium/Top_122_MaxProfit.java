@@ -47,8 +47,9 @@ public class Top_122_MaxProfit {
                 //  最大收益就是当天的价格 - 之前买入的价格
                 maxProfit += prices[i] - minPrice;
                 minPrice = prices[i];
-            } else if (i == prices.length - 1 && prices[i] - minPrice > 0) //   最后是最后一天了, 并且当天的价格 - 之前买入的价格只要有收益就卖掉
+            } else if (i == prices.length - 1 && prices[i] - minPrice > 0) {//   最后是最后一天了, 并且当天的价格 - 之前买入的价格只要有收益就卖掉
                 maxProfit += prices[i] - minPrice;
+            }
         }
         return maxProfit;
     }
