@@ -33,8 +33,8 @@ public class Top_334_IncreasingTriplet {
     /**
      * 贪心思路
      * 1.先找一个第一小
-     * 2.再找一个比第一小大的第二小的值, 永远只更新第一小
-     * 3.找到一个比第二小大的就返回
+     * 2.再找一个不是第一小的第二小, 永远只主动更新第一小, 被动更新第二小, 只要不是第一小就是第二小
+     * 3.如果存在一个数比第二小还大,直接返回即可
      *
      * @param nums
      * @return
@@ -60,8 +60,7 @@ public class Top_334_IncreasingTriplet {
     }
 
     public static void main(String[] args) {
-        int[] nums = {9, 10, 5, 11, 10, 9, 8};
+        int[] nums = {9, 10, 5};
         System.out.println(increasingTriplet(nums));
     }
-
 }
