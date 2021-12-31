@@ -1,7 +1,5 @@
 package leetcode.util;
 
-import org.omg.CORBA.OBJ_ADAPTER;
-
 import java.util.List;
 
 public class LCUtil {
