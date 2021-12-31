@@ -1,6 +1,5 @@
 package leetcode.daily;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
