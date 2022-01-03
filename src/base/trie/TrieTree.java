@@ -8,20 +8,7 @@ import java.util.HashMap;
  */
 public class TrieTree {
 
-    /**
-     * 无法穷举或种类很多：用hash表
-     */
-    static class Node2 {
-        int pass;
-        int end;
-        HashMap<Integer, Node2> nexts;
 
-        public Node2() {
-            this.pass = 0;
-            this.end = 0;
-            this.nexts = new HashMap<>();
-        }
-    }
 
     /**
      * 限制问题:字符串这种可以穷举的类型
@@ -162,6 +149,21 @@ public class TrieTree {
                 node = next;
             }
             return node.end;
+        }
+    }
+
+    /**
+     * 无法穷举或种类很多：用hash表
+     */
+    static class Node2 {
+        int pass;
+        int end;
+        HashMap<Integer, Node2> nexts;
+
+        public Node2() {
+            this.pass = 0;
+            this.end = 0;
+            this.nexts = new HashMap<>();
         }
     }
 
