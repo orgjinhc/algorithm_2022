@@ -24,6 +24,7 @@ public class Daily_67_AddBinary {
         int N = a.length();
         int M = b.length();
         String ans = "";
+        StringBuilder sb = new StringBuilder();
         int carry = 0;
         while (N > 0 || M > 0) {
             int n = 0;
@@ -34,21 +35,21 @@ public class Daily_67_AddBinary {
             if (M > 0) {
                 m = Integer.valueOf(b.charAt(--M) - '0');
             }
-            ans = ((n + m + carry) % 2) + ans;
-            carry = (n + m + carry) / 2;
+            int sum = n + m + carry;
+            sb.append((sum) % 2);
+            carry = (sum) / 2;
         }
         if (carry == 1) {
-            ans = carry + ans;
+            sb.append(carry);
         }
-        return ans;
+        return sb.reverse().toString();
     }
 
     public String addBinary2(String a, String b) {
-        return Integer.toBinaryString(
-                Integer.parseInt(a, 2) + Integer.parseInt(b, 2)
-        );
+        return Integer.toBinaryString(Integer.parseInt(a, 2) + Integer.parseInt(b, 2));
     }
-    public String addBinary(String strA, String strB) {
+
+    public static String addBinary(String strA, String strB) {
         int a = Integer.valueOf(strA);
         int b = Integer.valueOf(strB);
         int sum = a;
@@ -63,6 +64,6 @@ public class Daily_67_AddBinary {
     public static void main(String[] args) {
         String a = "1010";
         String b = "1011";
-        System.out.println(addBinary1(a, b));
+        System.out.println(addBinary(a, b));
     }
 }

@@ -21,13 +21,14 @@ public class IsPalindrome_125 {
             return true;
         }
         String targetStr = process(s);
-        if (targetStr.length() < 2) {
+        int N = targetStr.length();
+        if (N < 2) {
             return true;
         }
-        int M = (targetStr.length() - 1 + 0) / 2;
+        int M = (N - 1 + 0) / 2;
         int L = M - 1;
         int R;
-        if (targetStr.length() % 2 == 0) {
+        if (N % 2 == 0) {
             if (targetStr.charAt(M) != targetStr.charAt(M + 1)) {
                 return false;
             }
@@ -35,7 +36,7 @@ public class IsPalindrome_125 {
         } else {
             R = M + 1;
         }
-        while (L >= 0 && R <= targetStr.length() - 1) {
+        while (L >= 0 && R <= N - 1) {
             if (targetStr.charAt(L--) != targetStr.charAt(R++)) {
                 return false;
             }
@@ -104,12 +105,20 @@ public class IsPalindrome_125 {
     }
 
     public static boolean equals(char leftChar, char rightChar) {
+        if (isNumber(leftChar) || isNumber(rightChar)) {
+            return leftChar == rightChar;
+        }
         return (leftChar == rightChar) || (Math.min(leftChar, rightChar) == Math.max(leftChar, rightChar) - 32);
     }
 
+    public static boolean isNumber(char c) {
+        return (c >= '0' && c <= '9');
+    }
+
+
 
     public static void main(String[] args) {
-        String s = "abcBA";
+        String s = "0P";
         System.out.println(isPalindrome(s));
         System.out.println(isPalindrome2(s));
     }

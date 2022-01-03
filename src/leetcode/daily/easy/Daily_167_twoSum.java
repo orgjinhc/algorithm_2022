@@ -8,11 +8,11 @@ public class Daily_167_twoSum {
         HashMap<Integer, Integer> dp = new HashMap<>();
         dp.put(numbers[0], 0);
         for (int i = 1; i < numbers.length; i++) {
-            if (!dp.containsKey(numbers[i])) {
-                dp.put(numbers[i], i);
-            }
             if (dp.containsKey(target - numbers[i])) {
                 return new int[]{dp.get(target - numbers[i]), i};
+            }
+            if (!dp.containsKey(numbers[i])) {
+                dp.put(numbers[i], i);
             }
         }
         return new int[2];
