@@ -5,8 +5,19 @@ import base.tree.TreeNode;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * 公共祖先
+ */
 public class Daily_236_lowestCommonAncestor {
 
+    /**
+     * 官方解法
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
@@ -26,17 +37,15 @@ public class Daily_236_lowestCommonAncestor {
         return null;
     }
 
-
-    public static class Node {
-        public int value;
-        public Node left;
-        public Node right;
-
-        public Node(int data) {
-            this.value = data;
-        }
-    }
-
+    /**
+     * 利用简单数据结构实现
+     * 通俗易懂
+     *
+     * @param head
+     * @param p
+     * @param q
+     * @return
+     */
     public static Node lowestAncestor1(Node head, Node p, Node q) {
         if (head == null) {
             return null;
@@ -51,12 +60,15 @@ public class Daily_236_lowestCommonAncestor {
         HashSet<Node> pParentSet = new HashSet<>();
         Node cur = p;
         pParentSet.add(cur);
+
+        //  p 所有父节点添加到集合里
         Node parentOfCurNode = parentMap.get(cur);
         while (parentOfCurNode != null) {
             cur = parentOfCurNode;
             pParentSet.add(cur);
         }
         cur = q;
+        //  q出现在集合内, 就找到里两个节点的公共祖先
         while (!pParentSet.contains(cur)) {
             cur = parentMap.get(cur);
         }
@@ -73,6 +85,16 @@ public class Daily_236_lowestCommonAncestor {
         if (rightNode != null) {
             parentMap.put(rightNode, root);
             fillParentMap(rightNode, parentMap);
+        }
+    }
+
+    public static class Node {
+        public int value;
+        public Node left;
+        public Node right;
+
+        public Node(int data) {
+            this.value = data;
         }
     }
 
