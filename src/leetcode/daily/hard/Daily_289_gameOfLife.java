@@ -1,4 +1,4 @@
-package leetcode.daily.medium;
+package leetcode.daily.hard;
 
 public class Daily_289_gameOfLife {
     public void gameOfLife(int[][] board) {
