@@ -5,7 +5,7 @@ import leetcode.util.LCUtil;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] nums = {1, 3, 4, 2, 2};
+        int[] nums = {1, 4, 2, 6, 4, 8, 2, 9};
         process(nums, 0, nums.length - 1);
         LCUtil.print(nums);
     }
