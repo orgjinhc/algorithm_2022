@@ -3,7 +3,7 @@ package leetcode.daily.merge_sort_subject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSortSubject_1_MinSum {
+public class MergeSortSubject_1_LeftMinSum {
 
     public static int minSum(int[] nums) {
         List<Integer> ans = new ArrayList<>();
