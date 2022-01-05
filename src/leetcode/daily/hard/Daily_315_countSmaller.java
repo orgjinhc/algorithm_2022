@@ -62,6 +62,8 @@ public class Daily_315_countSmaller {
 
     /**
      * 核心流程
+     * 逆序比较和排序
+     * 相等情况先排序右边
      *
      * @param arr
      * @param left
