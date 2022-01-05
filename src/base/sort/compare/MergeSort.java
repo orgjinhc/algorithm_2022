@@ -1,9 +1,13 @@
 package base.sort.compare;
 
+import leetcode.util.LCUtil;
+
 public class MergeSort {
 
     public static void main(String[] args) {
-
+        int[] nums = {1, 3, 4, 2, 2};
+        process(nums, 0, nums.length - 1);
+        LCUtil.print(nums);
     }
 
 
@@ -84,23 +88,24 @@ public class MergeSort {
         if (L == R) {
             return;
         }
-        int mid = (L + R) / 2;
+        //  找到mid
+        int findMid = (L + R) / 2;
         //  左边保证有序
-        process(arr, L, mid);
+        process(arr, L, findMid);
         //  右边保证有序
-        process(arr, mid + 1, R);
+        process(arr, findMid + 1, R);
         //  合并两边, 保证全局有序
-        merge(arr, L, mid, R);
+        merge(arr, L, findMid, R);
     }
 
-    private static void merge(int[] arr, int l, int mid, int r) {
-        int[] help = new int[r - l + 1];
-        int p1 = l;
+    private static void merge(int[] arr, int left, int mid, int right) {
+        int[] help = new int[right - left + 1];
+        int p1 = left;
         int p2 = mid + 1;
         int i = 0;
 
         //  处理合并流程, 只要有一个指针越界, 退出当前合并流程
-        while (p1 <= mid && p2 <= r) {
+        while (p1 <= mid && p2 <= right) {
             help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
 
@@ -110,13 +115,13 @@ public class MergeSort {
         }
 
         //  p1越界, 数组还有元素没有合并
-        while (p2 <= r) {
+        while (p2 <= right) {
             help[i++] = arr[p2++];
         }
 
         //  原数组排序
         for (int i1 = 0; i1 < help.length; i1++) {
-            arr[l + i1] = help[i1];
+            arr[left + i1] = help[i1];
         }
     }
 }
