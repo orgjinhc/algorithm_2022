@@ -51,8 +51,8 @@ public class Hot_15_ThreeSum {
                 }
 
                 //  如果abc之和大与0, 需要寻找c的位置
-                while ((nums[a] + nums[b] + nums[c]) > 0 && (b < c--)) {
-
+                while ((nums[a] + nums[b] + nums[c]) > 0 && (b < c)) {
+                    c--;
                 }
 
                 //  b和c的位置重合了也不用尝试了
