@@ -54,7 +54,7 @@ public class Daily_40_combinationSum2 {
             }
             //  当前数可能是候选答案, 添加到集合
             combination.addLast(candidates[i]);
-            //  剩余数减去当前数, 继续尝试下一个位置
+            //  剩余数减去当前数, 继续尝试下一个位置(i or i+1, 取决于一个数是否可以被重复利用)
             DFS(candidates, res, i + 1, combination, ans);
             //  恢复现场
             combination.removeLast();

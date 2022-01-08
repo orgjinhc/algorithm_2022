@@ -1,4 +1,4 @@
-package leetcode.hot_100;
+package leetcode.daily.medium;
 
 /**
  * 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
@@ -9,7 +9,7 @@ package leetcode.hot_100;
  * <p>
  * 链接：https://leetcode-cn.com/problems/single-number
  */
-public class Hot_136_SingleNumber_136 {
+public class Daily_136_SingleNumber {
 
     /**
      * 异或实现, 异或满足交互律和结合律
