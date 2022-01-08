@@ -66,6 +66,7 @@ public class Daily_39_CombinationSum {
         if (target == 0) {
             ans.add(new ArrayList<>(combine));
             return;
+
         }
         for (int i = index; i < candidates.length; i++) {
             int remainingNum = target - candidates[i];
@@ -75,7 +76,7 @@ public class Daily_39_CombinationSum {
             //  添加答案
             combine.add(candidates[i]);
             //  以当前位置不断的进行尝试, 直到不满足的位置出现后。最后一次不满足场景退出
-            dfs(candidates, remainingNum, ans, combine, i);
+            dfs(candidates, remainingNum, ans, combine, i+1);
             //  恢复现场
             combine.remove(combine.size() - 1);
         }
@@ -115,8 +116,8 @@ public class Daily_39_CombinationSum {
     }
 
     public static void main(String[] args) {
-        int[] nums = {2, 3, 6, 7};
-        List<List<Integer>> ans = customCombinationSum(nums, 7);
+        int[] nums = {2,16,14,15};
+        List<List<Integer>> ans = customCombinationSum(nums, 20);
         for (List<Integer> list : ans) {
             for (Integer integer : list) {
                 System.out.print(" " + integer);
