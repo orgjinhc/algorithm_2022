@@ -1,4 +1,4 @@
-package leetcode.top_200.medium;
+package leetcode.daily.medium;
 
 import leetcode.util.LCUtil;
 
@@ -28,12 +28,11 @@ import java.util.List;
  * <p>
  * 链接：https://leetcode-cn.com/problems/subsets
  */
-public class Top_78_Subsets {
+public class Daily_78_Subsets {
 
     public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         if (nums.length == 1) {
-            ans.add(new ArrayList<>());
             ans.add(Arrays.asList(nums[0]));
             return ans;
         }
