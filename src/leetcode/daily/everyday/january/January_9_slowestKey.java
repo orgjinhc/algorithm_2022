@@ -1,4 +1,4 @@
-package leetcode.everyday.january;
+package leetcode.daily.everyday.january;
 
 public class January_9_slowestKey {
 
