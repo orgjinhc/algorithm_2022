@@ -27,7 +27,7 @@ public class Top_328_OddEvenList {
         ListNode F = head;
         ListNode S = head.next;
         ListNode TMP = S;
-        while (S != null && S.next != null && S.next != null) {
+        while (S != null && S.next != null) {
             F.next = F.next.next;
             S.next = S.next.next;
             F = F.next;

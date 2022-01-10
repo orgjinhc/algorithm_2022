@@ -62,7 +62,7 @@ public class Daily_40_combinationSum2 {
     }
 
     public static void main(String[] args) {
-        int[] candidates = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-        LCUtil.print(combinationSum2(candidates, 30));
+        int[] candidates = {1, 1, 1, 1, 1, 1, 1, 1};
+        LCUtil.print(combinationSum2(candidates, 11));
     }
 }
