@@ -1,4 +1,4 @@
-package leetcode.everyday.december;
+package leetcode.daily.everyday.december;
 
 /**
  * 给你一个 下标从 0 开始 的整数数组 nums ，返回满足下述条件的 不同 四元组 (a, b, c, d) 的 数目 ：

@@ -1,4 +1,4 @@
-package leetcode.everyday.december;
+package leetcode.daily.everyday.december;
 
 /**
  * 给你一个字符串date ，按 YYYY-MM-DD 格式表示一个 现行公元纪年法 日期。请你计算并返回该日期是当年的第几天。

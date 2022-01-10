@@ -1,4 +1,4 @@
-package leetcode.everyday.january;
+package leetcode.daily.everyday.january;
 
 /**
  * 给你一个下标从 0开始的一维整数数组original和两个整数m和n。你需要使用original中所有元素创建一个m行n列的二维数组。
