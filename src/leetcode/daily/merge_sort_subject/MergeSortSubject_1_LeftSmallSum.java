@@ -3,26 +3,20 @@ package leetcode.daily.merge_sort_subject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSortSubject_1_LeftMinSum {
+public class MergeSortSubject_1_LeftSmallSum {
 
     public static int minSum(int[] nums) {
-        List<Integer> ans = new ArrayList<>();
-        mergeSort(nums, 0, nums.length - 1, ans);
-        int sum = 0;
-        for (Integer num : ans) {
-            sum += num;
-        }
-        return sum;
+        return mergeSort(nums, 0, nums.length - 1, 0);
     }
 
-    public static void mergeSort(int[] nums, int L, int R, List<Integer> ans) {
+    public static int mergeSort(int[] nums, int L, int R, int ans) {
         if (L == R) {
-            return;
+            return 0;
         }
         int M = (L + R) / 2;
-        mergeSort(nums, L, M, ans);
-        mergeSort(nums, M + 1, R, ans);
-        ans.add(merge(nums, L, M, R));
+        return mergeSort(nums, L, M, ans) +
+                mergeSort(nums, M + 1, R, ans) +
+                merge(nums, L, M, R);
     }
 
     public static int merge(int[] nums, int L, int M, int R) {
@@ -32,9 +26,9 @@ public class MergeSortSubject_1_LeftMinSum {
         int p2 = M + 1;
         int index = 0;
         while (p1 <= M && p2 <= R) {
-            if (nums[p2] > nums[p1]) {
-                ans += (R - p2 + 1) * nums[p1];
-            }
+            ans += nums[p1] < nums[p2] ? (R - p2 + 1) * nums[p1] : 0 * nums[p1];
+
+            //  与传统mergeSort的区别就是稳定性差别 nums[p1] < nums[p2]
             help[index++] = nums[p1] < nums[p2] ? nums[p1++] : nums[p2++];
         }
 

@@ -3,26 +3,20 @@ package leetcode.daily.merge_sort_subject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSortSubject_1_RightMinSum {
+public class MergeSortSubject_1_RightSmallSum {
 
     public static int minSum(int[] nums) {
-        List<Integer> ans = new ArrayList<>();
-        mergeSort(nums, 0, nums.length - 1, ans);
-        int sum = 0;
-        for (Integer num : ans) {
-            sum += num;
-        }
-        return sum;
+        return mergeSort(nums, 0, nums.length - 1, 0);
     }
 
-    public static void mergeSort(int[] nums, int L, int R, List<Integer> ans) {
+    public static int mergeSort(int[] nums, int L, int R, int ans) {
         if (L == R) {
-            return;
+            return 0;
         }
         int M = (L + R) / 2;
-        mergeSort(nums, L, M, ans);
-        mergeSort(nums, M + 1, R, ans);
-        ans.add(merge(nums, L, M, R));
+        return mergeSort(nums, L, M, ans) +
+                mergeSort(nums, M + 1, R, ans) +
+                merge(nums, L, M, R);
     }
 
     public static int merge(int[] nums, int L, int M, int R) {
@@ -32,10 +26,13 @@ public class MergeSortSubject_1_RightMinSum {
         int p2 = R;
         int index = help.length - 1;
         while (p1 >= L && p2 >= M + 1) {
+            //  1,2,2,3,3,6     1,1,1,1,1,2,6,6,7
             if (nums[p1] > nums[p2]) {
-                ans += nums[p2];
+                for (int i = p2; i > M; i--) {
+                    ans += nums[i];
+                }
             }
-            help[index--] = nums[p1] < nums[p2] ? nums[p2--] : nums[p1--];
+            help[index--] = nums[p1] <= nums[p2] ? nums[p2--] : nums[p1--];
         }
 
         while (p1 >= L) {
@@ -53,7 +50,7 @@ public class MergeSortSubject_1_RightMinSum {
     }
 
     public static void main(String[] args) {
-        int[] nums = {5, 2, 6, 1};
+        int[] nums = {1, 4, 2, 6};
         System.out.println(minSum(nums));
     }
 }

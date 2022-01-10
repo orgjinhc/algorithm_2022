@@ -1,4 +1,4 @@
-package leetcode.everyday.december;
+package leetcode.daily.everyday.december;
 
 public class Daily_1201_MaxPower {
 

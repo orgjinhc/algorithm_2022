@@ -1,4 +1,4 @@
-package leetcode.everyday.december;
+package leetcode.daily.everyday.december;
 
 /**
  * 输入：a = "abcd", b = "cdabcdab"

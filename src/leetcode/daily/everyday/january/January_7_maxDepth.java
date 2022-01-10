@@ -1,4 +1,4 @@
-package leetcode.everyday.january;
+package leetcode.daily.everyday.january;
 
 import java.util.Stack;
 

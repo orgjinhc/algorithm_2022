@@ -1,4 +1,4 @@
-package leetcode.everyday.december;
+package leetcode.daily.everyday.december;
 
 import java.util.Arrays;
 import java.util.HashMap;
