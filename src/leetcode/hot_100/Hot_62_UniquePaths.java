@@ -45,18 +45,6 @@ public class Hot_62_UniquePaths {
             }
         }
         return f[m - 1][n - 1];
-//        //  需要的步数
-//        long sum = m + n - 2;
-//        //  m - 1 向下最大距离
-//        //  n - 1 向右最大距离
-//        int min = Math.min(m - 1, n - 1);
-//        long ret = 1;
-//        long ins = 1;
-//        for (int i = 0; i < min; i++) {
-//            ret *= sum - i;
-//            ins *= min - i;
-//        }
-//        return (int) (ret / ins);
     }
 
     public static void main(String[] args) {
