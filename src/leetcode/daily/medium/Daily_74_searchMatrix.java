@@ -2,39 +2,37 @@ package leetcode.daily.medium;
 
 public class Daily_74_searchMatrix {
 
-    /**
-     * 核心技巧
-     * 二分获取小于等最右边的位置 or 大于等于最左位置
-     *
-     * @param matrix
-     * @param target
-     * @return
-     */
-    public static boolean searchMatrix(int[][] matrix, int target) {
-        for (int[] subMatrix : matrix) {
-            int min = subMatrix[0];
-            int max = subMatrix[subMatrix.length - 1];
-
-            if (target > max || target < min) {
-                continue;
-            }
-
-            return binarySearch(subMatrix, target);
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int rowIndex = binarySearchFirstColumn(matrix, target);
+        if (rowIndex < 0) {
+            return false;
         }
-        return false;
+        return binarySearchRow(matrix[rowIndex], target);
     }
 
-    public static boolean binarySearch(int[] nums, int target) {
-        int L = 0;
-        int R = nums.length - 1;
-        while (L <= R) {
-            int mid = (R + L) / 2;
-            if (nums[mid] > target) {
-                R = mid - 1;
-            } else if (nums[mid] == target) {
-                return true;
+    public int binarySearchFirstColumn(int[][] matrix, int target) {
+        int low = -1, high = matrix.length - 1;
+        while (low < high) {
+            int mid = (high - low + 1) / 2 + low;
+            if (matrix[mid][0] <= target) {
+                low = mid;
             } else {
-                L = mid + 1;
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+
+    public boolean binarySearchRow(int[] row, int target) {
+        int low = 0, high = row.length - 1;
+        while (low <= high) {
+            int mid = (high - low) / 2 + low;
+            if (row[mid] == target) {
+                return true;
+            } else if (row[mid] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
             }
         }
         return false;
