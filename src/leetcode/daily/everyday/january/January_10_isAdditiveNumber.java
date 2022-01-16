@@ -2,20 +2,29 @@ package leetcode.daily.everyday.january;
 
 public class January_10_isAdditiveNumber {
 
+    /**
+     * 此题使用三种技巧
+     * 1.暴力尝试, 三个数字进行相加逻辑, 只需要通过第二个数可以获得第一个数和第三个数(核心逻辑)
+     * 2.字符实现十进制相加
+     * 3.字符串比较和位置交换
+     *
+     * @param num
+     * @return
+     */
     public static boolean isAdditiveNumber(String num) {
         int N = num.length();
-        char firstStartValue = num.charAt(0);
-        //  穷举第二个数的开始位置, 等价于穷举第一个数的结束位置, 因为第一个数的开始位置已经固定
-        for (int secondStart = 1; secondStart < N - 1; ++secondStart) {
-            if (firstStartValue == '0' && secondStart != 1) {
-                break;
+        for (int secondStart = 1; secondStart < N - 1; secondStart++) {
+            //  只允许首位是0的情况, 其余情况不允许
+            if (num.charAt(0) == '0' && secondStart > 1) {
+                continue;
             }
-            //  穷举第二个数的结束位置
-            for (int secondEnd = secondStart; secondEnd < N - 1; ++secondEnd) {
-                if (num.charAt(secondStart) == '0' && secondStart != secondEnd) {
+            //  暴力尝试第二个数的结束位置, 直到末尾位置
+            for (int secondEnd = secondStart; secondEnd < N - 1; secondEnd++) {
+                //  只允许首位是0的情况, 其余情况不允许
+                if (num.charAt(secondStart) == '0' && secondEnd > secondStart) {
                     break;
                 }
-                if (valid(secondStart, secondEnd, num)) {
+                if (isValid(num, secondStart, secondEnd)) {
                     return true;
                 }
             }
@@ -24,72 +33,79 @@ public class January_10_isAdditiveNumber {
     }
 
     /**
-     * 根据第二个数的开始和结束位置推导出第一个数的开始和结束位置
-     * 再根据前两个数的位置推导出第三个数的大小和位置
+     * 字符串比对
+     * firstStart = 0
+     * firstEnd = secondStart - 1
+     * secondStart = 递增
+     * secondEnd - 递增
+     * thirdStart = secondEnd + 1
+     * thirdEnd = secondEnd + length
      *
+     * @param num
      * @param secondStart
      * @param secondEnd
-     * @param num
      * @return
      */
-    public static boolean valid(int secondStart, int secondEnd, String num) {
+    private static boolean isValid(String num, int secondStart, int secondEnd) {
         int N = num.length();
         int firstStart = 0;
         int firstEnd = secondStart - 1;
-        while (secondEnd <= N - 1) {
-            String third = stringAdd(num, firstStart, firstEnd, secondStart, secondEnd);
-
-            //  第三个数的开始和结束依次类推
+        while (secondEnd < N) {
+            String third = obtainForThirdNumberByAdditiveNumber(num, firstStart, firstEnd, secondStart, secondEnd);
             int thirdStart = secondEnd + 1;
             int thirdEnd = secondEnd + third.length();
+
+            //  第三个数的结束位置已经越界 or 前两个数相加的结果和数字字符串的位置上的数不等
             if (thirdEnd >= N || !num.substring(thirdStart, thirdEnd + 1).equals(third)) {
-                break;
+                return false;
             }
+            //  第三个数的位置正好是右边界情况, 直接返回true
             if (thirdEnd == N - 1) {
                 return true;
             }
+
+            //  继续验证下一个位置的数
             firstStart = secondStart;
             firstEnd = secondEnd;
             secondStart = thirdStart;
             secondEnd = thirdEnd;
         }
-        return false;
+        return true;
     }
 
     /**
-     * 两数按位相加
+     * 字符串相加实现
      *
-     * @param s
+     * @param num
      * @param firstStart
      * @param firstEnd
      * @param secondStart
      * @param secondEnd
      * @return
      */
-    public static String stringAdd(String s, int firstStart, int firstEnd, int secondStart, int secondEnd) {
-        StringBuffer third = new StringBuffer();
+    private static String obtainForThirdNumberByAdditiveNumber(String num, int firstStart, int firstEnd, int secondStart, int secondEnd) {
+        StringBuilder sb = new StringBuilder();
         int carry = 0;
-        int cur = 0;
         while (firstEnd >= firstStart || secondEnd >= secondStart || carry != 0) {
-            cur = carry;
+            int cur = 0;
             if (firstEnd >= firstStart) {
-                cur += s.charAt(firstEnd) - '0';
-                --firstEnd;
+                cur += num.charAt(firstEnd) - '0';
+                firstEnd--;
             }
             if (secondEnd >= secondStart) {
-                cur += s.charAt(secondEnd) - '0';
-                --secondEnd;
+                cur += num.charAt(secondEnd) - '0';
+                secondEnd--;
             }
-            carry = cur / 10;
-            cur %= 10;
-            third.append((char) (cur + '0'));
+            int sum = cur + carry;
+            carry = sum / 10;
+            sb.append(sum % 10);
         }
-        third.reverse();
-        return third.toString();
+        sb.reverse();
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        String num = "199100199";
+        String num = "12012122436";
         System.out.println(isAdditiveNumber(num));
     }
 }

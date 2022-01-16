@@ -1,4 +1,4 @@
-package leetcode.top_200.medium;
+package leetcode.daily.medium;
 
 
 import leetcode.util.LCUtil;
@@ -25,7 +25,7 @@ import java.util.Random;
  * -104<= nums[i] <= 104
  * 链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array
  */
-public class Top_215_FindKthLargest {
+public class Daily_215_FindKthLargest {
 
     /**
      * 基于语言实现的排序库
@@ -51,9 +51,13 @@ public class Top_215_FindKthLargest {
         return quickSelect(nums, 0, N - 1, N - k);
     }
 
+    public static int findKthSmallest(int[] nums, int k) {
+        return quickSelect(nums, 0, nums.length - 1, k - 1);
+    }
+
     public static int quickSelect(int[] nums, int left, int right, int index) {
-        int i = left + new Random().nextInt(right - left + 1);
-        LCUtil.swap(nums, i, right);
+        int pivot = left + new Random().nextInt(right - left + 1);
+        LCUtil.swap(nums, pivot, right);
         int q = partition(nums, left, right);
         if (q == index) {
             return nums[q];
@@ -93,32 +97,9 @@ public class Top_215_FindKthLargest {
         return lessEquals;
     }
 
-    public static int[] partition1(int[] arr, int L, int R) {
-        if (L == R) {
-            return new int[]{L, L};
-        }
-        //  将 L...R 变为左 中 右 三部分, 左边小于区域, 中间等于区域, 右边大于区域
-        //  定义两个区域的边界
-        int lessEquals = L - 1;
-        int moreEquals = R;
-        int index = L;
-        //  如果左边碰到大于区域的边界结束
-        while (index < moreEquals) {
-            if (arr[index] < arr[R]) {
-                LCUtil.swap(arr, index++, ++lessEquals);
-            } else if (arr[index] > arr[R]) {
-                LCUtil.swap(arr, index, --moreEquals);
-            } else {
-                index++;
-            }
-        }
-        LCUtil.swap(arr, moreEquals, R);
-        return new int[]{lessEquals + 1, moreEquals};
-    }
-
     public static void main(String[] args) {
         int[] nums = {3, 2, 3, 1, 2, 4, 5, 5, 3};
-//        System.out.println(findKthLargestBySort(nums, 3));
-        System.out.println(findKthLargest(nums, 3));
+        System.out.println(findKthSmallest(nums, 9));
+        System.out.println(findKthLargest(nums, 1));
     }
 }

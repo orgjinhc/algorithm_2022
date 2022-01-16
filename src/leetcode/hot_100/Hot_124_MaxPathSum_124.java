@@ -60,27 +60,21 @@ public class Hot_124_MaxPathSum_124 {
 
         Info leftProcess = process(node.left);
         Info rightProcess = process(node.right);
-        //  与当前节点有关的逻辑部分
-
+        //  一、与当前节点有关的逻辑部分
         //  当前节点是叶子节点情况, 包含头的最大路径和为当前节点自身
         int maxPathSumFromHead = node.val;
-
         //  当前节点非叶子节点, 有左树情况
         if (leftProcess != null) {
             //  当前节点包含头的最大路径和为当前节点+左树的包含头的最大路径和与自己比较
             maxPathSumFromHead = Math.max(leftProcess.maxPathSumFromHead + node.val, maxPathSumFromHead);
         }
-
         //  当前节点非叶子节点, 有右树情况
         if (rightProcess != null) {
             maxPathSumFromHead = Math.max(rightProcess.maxPathSumFromHead + node.val, maxPathSumFromHead);
         }
-
-        //  截止目前获取的包含头的最大路径和 可能是节点本身、也可能是左+节点、也可能是右+节点, 无论如何maxPathSumFromHead一定需要包含当前节点
-
+        //  截止目前获取的包含头的最大路径和 可能是节点本身、也可能是左 + 当前节点、也可能是右 + 当前节点, 无论如何maxPathSumFromHead一定需要包含当前节点
 
         //  与当前节点无关的逻辑部分
-
         //  下面再来处理不包含头的最大路径和
         //  当前节点是叶子节点情况下, 最大路径和就是自身
         int maxPathSum = node.val;
@@ -94,7 +88,6 @@ public class Hot_124_MaxPathSum_124 {
             maxPathSum = Math.max(maxPathSum, rightProcess.maxPathSum);
         }
         //  有关无关结合取最大部分
-
         //  还有一种可能:包含头的最大路径和比获取到的最大路径和要大的情况
         maxPathSum = Math.max(maxPathSum, maxPathSumFromHead);
 
