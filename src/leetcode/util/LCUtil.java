@@ -29,6 +29,13 @@ public class LCUtil {
         System.out.println();
     }
 
+    public static void printList(List<String> nums) {
+        for (String num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
 
     public static void print(List<List<Integer>> nums) {
         for (List<Integer> subList : nums) {
