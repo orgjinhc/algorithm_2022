@@ -8,6 +8,7 @@ import java.util.PriorityQueue;
 public class January_18_findMinDifference {
 
     public static int findMinDifferenceBySort(List<String> timePoints) {
+        final int finalSize = 24 * 60;
         Collections.sort(timePoints);
         int ans = Integer.MAX_VALUE;
         int firstMinutes = getMinutes(timePoints.get(0));
@@ -17,7 +18,7 @@ public class January_18_findMinDifference {
             ans = Math.min(ans, secondMinutes - preMinutes);
             preMinutes = secondMinutes;
         }
-        return Math.min(ans, 24 * 60 + firstMinutes - preMinutes);
+        return Math.min(ans, finalSize + firstMinutes - preMinutes);
     }
 
     public static int getMinutes(String timePoint) {
