@@ -38,6 +38,5 @@ public class January_27_countValidWords {
     }
 
     public static void main(String[] args) {
-        System.out.println(Character.isLetter('1'));
     }
 }

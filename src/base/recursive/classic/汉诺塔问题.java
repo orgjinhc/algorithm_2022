@@ -4,7 +4,7 @@ package base.recursive.classic;
  * 汉诺塔问题
  * 根据此问题 推导出递归的本质
  */
-public class Hanoi {
+public class 汉诺塔问题 {
 
     /**
      * 移动汉诺塔的主函数
@@ -110,6 +110,7 @@ public class Hanoi {
 
     /**
      * 通过改变递归函数的参数列表, 来增减递归函数的方法数
+     * 2^n - 1
      *
      * @param n
      * @param from
@@ -131,5 +132,8 @@ public class Hanoi {
         printHanoi(3);
         System.out.println();
         func(3, "left", "right", "mid");
+
+
+        String str = "abcdefg";
     }
 }
