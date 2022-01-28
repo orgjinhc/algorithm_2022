@@ -12,9 +12,7 @@ public class 全排列 {
 
     public static void main(String[] args) {
         LCUtil.printList(fullSequence1("acc"));
-        System.out.println();
         LCUtil.printList(fullSequence2("acc"));
-        System.out.println();
         LCUtil.printList(fullSequence3("acc"));
     }
 
