@@ -16,8 +16,9 @@ public class Game_278_2_maxScoreIndices {
             }
         }
         ArrayList<Integer> ans = new ArrayList<>();
-        int maxScore = dp[1];
-        for (int i = 0; i <= N; i++) {
+        ans.add(0);
+        int maxScore = dp[0] + dp[1];
+        for (int i = 1; i <= N; i++) {
             int curScore = f(nums, i, dp);
             if (curScore > maxScore) {
                 maxScore = curScore;
@@ -31,13 +32,11 @@ public class Game_278_2_maxScoreIndices {
     }
 
     public static int f(int[] nums, int index, int[] dp) {
-        if (index > 0 && index <= nums.length) {
-            int preIndex = nums[index - 1];
-            if (preIndex == 0) {
-                dp[0]++;
-            } else {
-                dp[1]--;
-            }
+        int preIndex = nums[index - 1];
+        if (preIndex == 0) {
+            dp[0]++;
+        } else {
+            dp[1]--;
         }
         return dp[0] + dp[1];
     }
