@@ -37,6 +37,13 @@ public class LCUtil {
         System.out.println();
     }
 
+    public static void printListInteger(List<Integer> nums) {
+        for (Integer num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
     public static void printStack(Stack<Integer> stack) {
         while (!stack.isEmpty()) {
             System.out.println(stack.pop());

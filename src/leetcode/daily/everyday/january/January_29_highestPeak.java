@@ -29,10 +29,11 @@ public class January_29_highestPeak {
         }
 
         while (!queue.isEmpty()) {
+            //  所有水域和已经算过高度的陆地区域
             int[] visited = queue.poll();
             int x = visited[0];
             int y = visited[1];
-            //  BFS流程, 尝试四个方向是否存在没有访问过的陆地, 设置其高度
+            //  BFS流程, 尝试四个方向是否存在没有访问过的陆地区域, 设置其高度为当前区域高度+1, 并将没有访问过的区域添加到队列内
             for (int[] dir : dirs) {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
