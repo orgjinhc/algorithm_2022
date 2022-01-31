@@ -7,31 +7,31 @@ public class QuickSort {
     public static void main(String[] args) {
         int[] nums = {2, 1, 3, 4, 7, 6, 9, 7, 8, 7};
         quickSort(nums, 0, nums.length - 1);
-
-        for (int i : nums) {
-            System.out.print(i + " ");
-        }
+        LCUtil.print(nums);
     }
 
+    /**
+     * 快排实现
+     * base case:如果L>=R无需继续排序
+     * 1.找到mid位置
+     * 2.继续L到mid-1
+     * 3.继续mid+1到R
+     *
+     * @param arr
+     * @param L
+     * @param R
+     */
     public static void quickSort(int[] arr, int L, int R) {
-        if (null == arr || arr.length < 2) {
-            return;
-        }
-        process(arr, L, R);
-    }
-
-    public static void process(int[] arr, int L, int R) {
         if (L >= R) {
             return;
         }
         //  保证 mid 左右有序
         int mid = partition(arr, L, R);
         //  保证左边有序
-        process(arr, L, mid - 1);
+        quickSort(arr, L, mid - 1);
         //  保证右边有序
-        process(arr, mid + 1, R);
+        quickSort(arr, mid + 1, R);
     }
-
 
     /**
      * 边界点
@@ -42,20 +42,15 @@ public class QuickSort {
      * @return
      */
     public static int partition(int[] arr, int L, int R) {
-        if (L > R) {
-            return -1;
-        }
-        if (L == R) {
+        if (L >= R) {
             return L;
         }
-        //  将 L...R 变为左右有序的两部分, 任意返回其中一部分即可
         int lessEquals = L - 1;
-        int index = L;
-        while (index < R) {
-            if (arr[index] <= arr[R]) {
-                LCUtil.swap(arr, index, ++lessEquals);
+        while (L < R) {
+            if (arr[L] <= arr[R]) {
+                LCUtil.swap(arr, L, ++lessEquals);
             }
-            index++;
+            L++;
         }
         LCUtil.swap(arr, ++lessEquals, R);
         return lessEquals;

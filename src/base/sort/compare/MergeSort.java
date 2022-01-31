@@ -6,7 +6,7 @@ public class MergeSort {
 
     public static void main(String[] args) {
         int[] nums = {1, 4, 2, 6, 4, 8, 2, 9};
-        process(nums, 0, nums.length - 1);
+        mergeSort(nums, 0, nums.length - 1);
         LCUtil.print(nums);
     }
 
@@ -84,16 +84,16 @@ public class MergeSort {
      * @param L
      * @param R
      */
-    public static void process(int[] arr, int L, int R) {
+    public static void mergeSort(int[] arr, int L, int R) {
         if (L == R) {
             return;
         }
         //  找到mid
         int findMid = (L + R) / 2;
         //  左边保证有序
-        process(arr, L, findMid);
+        mergeSort(arr, L, findMid);
         //  右边保证有序
-        process(arr, findMid + 1, R);
+        mergeSort(arr, findMid + 1, R);
         //  合并两边, 保证全局有序
         merge(arr, L, findMid, R);
     }
