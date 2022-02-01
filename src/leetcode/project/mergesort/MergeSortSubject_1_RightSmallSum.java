@@ -1,9 +1,6 @@
-package leetcode.daily.merge_sort_subject;
+package leetcode.project.mergesort;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MergeSortSubject_1_LeftSmallSum {
+public class MergeSortSubject_1_RightSmallSum {
 
     public static int minSum(int[] nums) {
         return mergeSort(nums, 0, nums.length - 1, 0);
@@ -22,22 +19,25 @@ public class MergeSortSubject_1_LeftSmallSum {
     public static int merge(int[] nums, int L, int M, int R) {
         int ans = 0;
         int[] help = new int[R - L + 1];
-        int p1 = L;
-        int p2 = M + 1;
-        int index = 0;
-        while (p1 <= M && p2 <= R) {
-            ans += nums[p1] < nums[p2] ? (R - p2 + 1) * nums[p1] : 0 * nums[p1];
-
-            //  与传统mergeSort的区别就是稳定性差别 nums[p1] < nums[p2]
-            help[index++] = nums[p1] < nums[p2] ? nums[p1++] : nums[p2++];
+        int p1 = M;
+        int p2 = R;
+        int index = help.length - 1;
+        while (p1 >= L && p2 >= M + 1) {
+            //  1,2,2,3,3,6     1,1,1,1,1,2,6,6,7
+            if (nums[p1] > nums[p2]) {
+                for (int i = p2; i > M; i--) {
+                    ans += nums[i];
+                }
+            }
+            help[index--] = nums[p1] <= nums[p2] ? nums[p2--] : nums[p1--];
         }
 
-        while (p1 <= M) {
-            help[index++] = nums[p1++];
+        while (p1 >= L) {
+            help[index--] = nums[p1--];
         }
 
-        while (p2 <= R) {
-            help[index++] = nums[p2++];
+        while (p2 >= M + 1) {
+            help[index--] = nums[p2--];
         }
 
         for (int i = 0; i < help.length; i++) {

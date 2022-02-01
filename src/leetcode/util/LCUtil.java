@@ -1,6 +1,7 @@
 package leetcode.util;
 
 import java.util.List;
+import java.util.Stack;
 
 public class LCUtil {
 
@@ -25,6 +26,27 @@ public class LCUtil {
     public static void print(int[] nums) {
         for (int num : nums) {
             System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printList(List<String> nums) {
+        for (String num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printListInteger(List<Integer> nums) {
+        for (Integer num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printStack(Stack<Integer> stack) {
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
         }
         System.out.println();
     }

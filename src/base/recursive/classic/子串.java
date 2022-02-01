@@ -1,15 +1,13 @@
-package base.recursive;
+package base.recursive.classic;
 
 /**
- * 字符串子串问题
- * abcd
+ * 子串:从左向右必须连续的子串
  * 0 - a ab abc abcd
  * 1 - b bc bcd
  * 2 - c cd
  * 3 - d
  */
-public class Substring {
-
+public class 子串 {
 
     public static void process(String str) {
         if (null == str || str.length() < 1) {
