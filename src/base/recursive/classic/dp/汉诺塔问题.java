@@ -1,8 +1,9 @@
-package base.recursive.classic;
+package base.recursive.classic.dp;
 
 /**
  * 汉诺塔问题
  * 根据此问题 推导出递归的本质
+ * 从上向下的递归模型
  */
 public class 汉诺塔问题 {
 

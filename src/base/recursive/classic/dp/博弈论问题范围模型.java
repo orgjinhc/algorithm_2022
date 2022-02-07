@@ -1,9 +1,9 @@
-package base.recursive;
+package base.recursive.classic.dp;
 
 /**
  * 范围模型
  */
-public class Poke {
+public class 博弈论问题范围模型 {
 
     public static int process(int[] arr) {
         return Math.max(f(arr, 0, arr.length - 1), s(arr, 0, arr.length - 1));
