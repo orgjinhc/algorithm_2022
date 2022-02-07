@@ -5,51 +5,47 @@ package base.recursive.classic.dp;
  */
 public class 最少字符串问题 {
 
-    public static int process(int[] arr) {
-        return Math.max(f(arr, 0, arr.length - 1), s(arr, 0, arr.length - 1));
+    public static void main(String[] args) {
+        String[] str = {"ba", "c", "abcd"};
+        System.out.println(process(str, "babac"));
     }
 
-    /**
-     * 先手选牌
-     *
-     * @param arr
-     * @param L
-     * @param R
-     * @return
-     */
-    public static int f(int[] arr, int L, int R) {
-        //  边界条件:剩一张牌时
-        if (L == R) {
-            return arr[L];
-        }
-
-        return Math.max(
-                arr[L] + s(arr, L + 1, R),
-                arr[R] + s(arr, L, R - 1));
-    }
-
-    /**
-     * 后手选牌
-     *
-     * @param arr
-     * @param L
-     * @param R
-     * @return
-     */
-    public static int s(int[] arr, int L, int R) {
-        //  剩一张牌没牌可选
-        if (L == R) {
+    public static int process(String[] str, String target) {
+        if (target.length() == 0) {
             return 0;
         }
-        return Math.min(
-                f(arr, L + 1, R),
-                f(arr, L, R - 1)
-        );
-
+        int min = Integer.MAX_VALUE;
+        for (String first : str) {
+            String rest = minus(first, target);
+            if (rest.length() != target.length()) {
+                min = Math.min(min, process(str, rest));
+            }
+        }
+        return min + (min == Integer.MAX_VALUE ? 0 : 1);
     }
 
-    public static void main(String[] args) {
-        int[] arr = {4, 7, 9, 5};
-        System.out.println(process(arr));
+    private static String minus(String first, String target) {
+        int[] count = new int[26];
+        for (int i = 0; i < target.length(); i++) {
+            count[target.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < first.length(); i++) {
+            count[first.charAt(i) - 'a']--;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < count.length; i++) {
+            int rest = count[i];
+            if (rest <= 0) {
+                continue;
+            }
+            for (int j = 0; j < rest; j++) {
+                sb.append((char) (i + 'a'));
+            }
+        }
+        return sb.toString();
     }
+
+
 }
