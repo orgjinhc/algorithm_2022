@@ -1,9 +1,9 @@
-package base.recursive.classic.dp;
+package base.recursive.classic.dp.从左到右模型;
 
 /**
  * 每个位置的货币可以使用多次
  */
-public class 货币系列问题从左向右模型2 {
+public class 货币系列问题2 {
 
     public static void main(String[] args) {
         int[] arr = {1, 1, 1};
