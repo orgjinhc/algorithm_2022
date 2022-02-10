@@ -1,6 +1,6 @@
-package base.recursive.classic.dp;
+package base.recursive.classic.dp.从左到右模型;
 
-public class RobotWalk从左往右模型 {
+public class RobotWalk {
 
     public static void main(String[] args) {
         System.out.println(robotWalk1(7, 2, 4, 4));

@@ -1,9 +1,9 @@
-package base.recursive.classic.dp;
+package base.recursive.classic.dp.从左到右模型;
 
 /**
  * 从左往右递归模型
  */
-public class 背包问题从左往右模型 {
+public class 背包问题 {
 
     public static void main(String[] args) {
         int[] weights = {5000, 1000, 500, 100};

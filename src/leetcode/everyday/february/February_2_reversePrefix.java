@@ -16,6 +16,6 @@ public class February_2_reversePrefix {
     }
 
     public static void main(String[] args) {
-
+        int[][] matrix = {{1, 2, 3}, {2, 4, 1}, {4, 6, 2}};
     }
 }

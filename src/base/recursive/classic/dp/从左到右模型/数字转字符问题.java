@@ -1,4 +1,4 @@
-package base.recursive.classic.dp;
+package base.recursive.classic.dp.从左到右模型;
 
 /**
  * 从左往右模型
@@ -7,7 +7,7 @@ package base.recursive.classic.dp;
  * 2  对应 B
  * 26 对应 Z
  */
-public class 数字转字符问题从左往右模型 {
+public class 数字转字符问题 {
 
     public static void main(String[] args) {
 
