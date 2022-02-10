@@ -10,6 +10,7 @@ public class 背包问题从左往右模型 {
         int[] values = {120, 40, 12, 3};
         int bag = 200;
         System.out.println(maxValue(weights, values, bag));
+        System.out.println(dp(weights, values, bag));
     }
 
     /**
@@ -53,4 +54,31 @@ public class 背包问题从左往右模型 {
         return Math.max(p1, p2);
     }
 
+
+    /**
+     * 动态规划
+     *
+     * @param w
+     * @param v
+     * @param bag
+     * @return
+     */
+    public static int dp(int[] w, int[] v, int bag) {
+        int N = w.length;
+        //  [0]index = 0 ~ N  -> N + 1 大小
+        //  [1]rest = 0 ~ rest -> rest + 1 大小
+        int[][] dp = new int[N + 1][bag + 1];
+        for (int index = N - 1; index >= 0; index--) {
+            for (int rest = 0; rest <= bag; rest++) {
+                int p1 = dp[index + 1][rest];
+                int p2 = -1;
+                //  判断下一个位置是否可以放入背包
+                if (rest - w[index] >= 0) {
+                    p2 = v[index] + dp[index + 1][rest - w[index]];
+                }
+                dp[index][rest] = Math.max(p1, p2);
+            }
+        }
+        return dp[0][bag];
+    }
 }
