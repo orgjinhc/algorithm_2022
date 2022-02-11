@@ -48,7 +48,7 @@ public class LoopIntersectProblem {
         Node slow = head.next;
         Node fast = head.next.next;
         while (slow != fast) {
-            if (null == slow || null == fast) {
+            if (null == fast.next || null == fast) {
                 return null;
             }
             slow = slow.next;
