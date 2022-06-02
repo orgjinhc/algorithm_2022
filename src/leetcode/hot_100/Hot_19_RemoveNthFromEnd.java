@@ -27,8 +27,6 @@ public class Hot_19_RemoveNthFromEnd {
         if (null == head || n < 0) {
             return null;
         }
-
-        //  遍历node, 求出个数
         ListNode tmp = head;
         int count = 0;
         while (tmp != null) {
@@ -45,11 +43,10 @@ public class Hot_19_RemoveNthFromEnd {
         }
 
         ListNode pre = head;
-        //  得到要删除位置的前一个位置
-        int delIndex = count - n;
-        int index = 1;
-        while (index < delIndex) {
-            index++;
+        int rightIndex = count - n;
+        int leftIndex = 1;
+        while (leftIndex < rightIndex) {
+            leftIndex++;
             pre = pre.next;
         }
 

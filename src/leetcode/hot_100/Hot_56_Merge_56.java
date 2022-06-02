@@ -1,5 +1,7 @@
 package leetcode.hot_100;
 
+import leetcode.util.LCUtil;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -33,34 +35,21 @@ public class Hot_56_Merge_56 {
             return intervals;
         }
         //  先把数组根据start位置排序, 让小的排前面
-        //  [
-        //    [2,4]
-        //    [1,3]
-        //    [7,11]
-        //    [5,9]
-        //  ]
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
-        //  排序后
-        //  [
-        //    [1,3]
-        //    [2,4]
-        //    [5,9]
-        //    [7,11]
-        //  ]
-        //  解决思路, 记录当前start和end, 判断下一位置的start是否在前一位置start和end边界内, 如果在那就合并这俩个数组, 否则就找到了一组答案
-
+        //  解决思路, 记录当前 start 和 end, 判断下个位置 start 是否在当前位置 start 和 end 边界内, 如果在那就合并这俩个数组, 否则就找到了一组答案
         int index = 0;
         int start = intervals[0][0];
         int end = intervals[0][1];
         for (int i = 1; i < m; i++) {
             int nextStart = intervals[i][0];
             int nextEnd = intervals[i][1];
-            //  下一位置的开始大于当前位置的结束
+            //  下个位置的开始大于当前位置的结束
             if (nextStart > end) {
-                //  收集当前区间答案
+                //  收集当前区间
                 ans[index][0] = start;
-                ans[index++][1] = end;
-                //  更新下一区间开始和结束位置
+                ans[index][1] = end;
+                index++;
+                //  更新区间开始和结束位置
                 start = nextStart;
                 end = nextEnd;
             } else {
@@ -70,7 +59,8 @@ public class Hot_56_Merge_56 {
         }
         //  最后收集一下最后一个开始和结束区间
         ans[index][0] = start;
-        ans[index++][1] = end;
+        ans[index][1] = end;
+        index++;
         return generatedMatrix(ans, index);
     }
 
@@ -87,14 +77,9 @@ public class Hot_56_Merge_56 {
 
     public static void main(String[] args) {
         int[][] intervals = {{1, 4}, {5, 6}};
-        int[][] ans = merge(intervals);
 
-        for (int[] an : ans) {
-            for (int i : an) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
+        for (int[] an : merge(intervals)) {
+            LCUtil.print(an);
         }
-        System.out.println();
     }
 }

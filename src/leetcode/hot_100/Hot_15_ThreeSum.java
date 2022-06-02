@@ -30,28 +30,29 @@ public class Hot_15_ThreeSum {
      */
     public static List<List<Integer>> threeSum2(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        if (nums == null || nums.length < 1) {
+        int length = nums.length;
+        if (nums == null || length < 1) {
             return ans;
         }
         Set<List<Integer>> set = new HashSet<>();
         Arrays.sort(nums);
         //  暴力遍历数组, 从头开始不断尝试答案, 外层循环控制a的起始位置, c的位置每次都是末尾元素
-        for (int a = 0; a < nums.length; a++) {
-            //  排序后的数组没有负数, 不可能存在三数相加等于0的情况
-            if (nums[a] > 0) {
+        for (int a = 0; a < length; a++) {
+            //  当前位置a为正数, 之后的位置不可能存在三数相加等于0的情况
+            int numA = nums[a];
+            if (numA > 0) {
                 return ans;
             }
-            int c = nums.length - 1;
-            //  内层循环控制b的起始位置, 每次都是从a的位置+1开始, 到c-1为止, b的位置单次循环不会变更, 每次变动c的位置来平衡结果
+            int c = length - 1;
+            //  内层循环控制b的起始位置, 从a的位置+1开始, 到c-1为止, b的位置单次循环不会变更, 每次变动c的位置来平衡结果
             for (int b = a + 1; b < c; b++) {
-                //  ab之和大于等于0就不用继续尝试了, 直接跳出当前b位置的循环体, 已经没有答案了
-                //  abc三数之和小与0, 也不用继续了
-                if ((nums[a] + nums[b] > 0) || ((nums[a] + nums[b] + nums[c]) < 0)) {
+                //  a + b + c三数之和 < 0, a + b >= 0就不用继续尝试了, 直接跳出当前b位置的循环体, 已经没有答案了
+                if ((numA + nums[b] > 0) || ((numA + nums[b] + nums[c]) < 0)) {
                     continue;
                 }
 
-                //  如果abc之和大与0, 需要寻找c的位置
-                while ((nums[a] + nums[b] + nums[c]) > 0 && (b < c)) {
+                //  a + b + c > 0, 需要寻找c的位置
+                while ((numA + nums[b] + nums[c]) > 0 && (b < c)) {
                     c--;
                 }
 
@@ -61,9 +62,9 @@ public class Hot_15_ThreeSum {
                     continue;
                 }
 
-                if (nums[a] + nums[b] + nums[c] == 0) {
+                if (numA + nums[b] + nums[c] == 0) {
                     List<Integer> curLevelAns = new ArrayList<>();
-                    curLevelAns.add(nums[a]);
+                    curLevelAns.add(numA);
                     curLevelAns.add(nums[b]);
                     curLevelAns.add(nums[c]);
                     if (set.add(curLevelAns)) {
@@ -90,21 +91,21 @@ public class Hot_15_ThreeSum {
             return new ArrayList<>();
         }
         List<List<Integer>> ans = new ArrayList<>();
-
         HashSet<List<Integer>> set = new HashSet<>();
 
         List<List<Integer>> fullPermutationList = new ArrayList<>();
         fullPermutation(nums, 0, new ArrayList<>(), fullPermutationList);
-        for (List<Integer> subArr : fullPermutationList) {
-            if (subArr.size() == 3) {
-                int arrSum = 0;
-                for (Integer num : subArr) {
-                    arrSum += num;
-                }
-                if (arrSum == 0) {
-                    Collections.sort(subArr);
-                    set.add(subArr);
-                }
+        for (List<Integer> childList : fullPermutationList) {
+            if (childList.size() != 3) {
+                continue;
+            }
+            int arrSum = 0;
+            for (Integer num : childList) {
+                arrSum += num;
+            }
+            if (arrSum == 0) {
+                Collections.sort(childList);
+                set.add(childList);
             }
         }
         ans.addAll(set);
@@ -144,7 +145,6 @@ public class Hot_15_ThreeSum {
         if (index == nums.length) {
             ans.add(path);
         } else {
-            System.out.println(index);
             List<Integer> selected = new ArrayList<>(nums.length);
             selected.addAll(path);
             selected.add(nums[index]);
@@ -156,32 +156,9 @@ public class Hot_15_ThreeSum {
         }
     }
 
-    private static int count = 0;
-
-    /**
-     * 全排列流程
-     *
-     * @param nums
-     * @param index
-     * @param path
-     * @return
-     */
-    public static void fullPermutation(int[] nums, int index, int[] path, int[][] ans) {
-        if (index == nums.length) {
-            ans[0] = path;
-        } else {
-            path[index] = nums[index];
-            fullPermutation(nums, index + 1, path, ans);
-
-            fullPermutation(nums, index + 1, path, ans);
-        }
-    }
-
-
     public static void main(String[] args) {
-        int[] nums = {0, 0, 0};
-        long starTime = System.currentTimeMillis();
+        int[] nums = {1, 0, -1, 2, -2, 0, 3, -2, -1};
+        System.out.println(threeSum(nums));
         System.out.println(threeSum2(nums));
-        System.out.println(System.currentTimeMillis() - starTime);
     }
 }

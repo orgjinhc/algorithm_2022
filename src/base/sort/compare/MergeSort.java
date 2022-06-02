@@ -102,26 +102,26 @@ public class MergeSort {
         int[] help = new int[right - left + 1];
         int p1 = left;
         int p2 = mid + 1;
-        int i = 0;
+        int index = 0;
 
         //  处理合并流程, 只要有一个指针越界, 退出当前合并流程
         while (p1 <= mid && p2 <= right) {
-            help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
+            help[index++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
 
         //  p2越界, 数组还有元素没有合并
         while (p1 <= mid) {
-            help[i++] = arr[p1++];
+            help[index++] = arr[p1++];
         }
 
         //  p1越界, 数组还有元素没有合并
         while (p2 <= right) {
-            help[i++] = arr[p2++];
+            help[index++] = arr[p2++];
         }
 
         //  原数组排序
-        for (int i1 = 0; i1 < help.length; i1++) {
-            arr[left + i1] = help[i1];
+        for (int i = 0; i < help.length; i++) {
+            arr[left + i] = help[i];
         }
     }
 }

@@ -7,14 +7,8 @@ import java.util.List;
 
 /**
  * 给定一个二叉树，找出其最大深度。
- * <p>
  * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
- * <p>
  * 说明:叶子节点是指没有子节点的节点。
- * <p>
- * 示例：
- * 给定二叉树 [3,9,20,null,null,15,7]，
- * <p>
  * 链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
  */
 public class Hot_104_MaxDepth_104 {
@@ -23,9 +17,7 @@ public class Hot_104_MaxDepth_104 {
         if (root == null) {
             return 0;
         } else {
-            int leftHeight = maxDepth1(root.left);
-            int rightHeight = maxDepth1(root.right);
-            return Math.max(leftHeight, rightHeight) + 1;
+            return Math.max(maxDepth1(root.left), maxDepth1(root.right)) + 1;
         }
     }
 
@@ -33,23 +25,17 @@ public class Hot_104_MaxDepth_104 {
         if (root == null) {
             return 0;
         }
-
         if (root.left == null && root.right == null) {
             return 1;
         }
-        List<Integer> ans = new ArrayList<>();
-        ans.add(0);
-        process(root, ans, 0);
-        return ans.get(0);
+        return process(root, 0);
     }
 
-    public static void process(TreeNode node, List<Integer> ans, int level) {
+    public static int process(TreeNode node, int level) {
         if (node == null) {
-            ans.set(0, Math.max(ans.get(0), level));
-            return;
+            return level;
         }
-        process(node.left, ans, level + 1);
-        process(node.right, ans, level + 1);
+        return Math.max(process(node.left, level + 1), process(node.right, level + 1));
     }
 
     public static void main(String[] args) {
@@ -64,5 +50,6 @@ public class Hot_104_MaxDepth_104 {
         node2.setRight(node6);
 
         System.out.println(maxDepth(node));
+        System.out.println(maxDepth1(node));
     }
 }

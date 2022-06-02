@@ -8,69 +8,50 @@ import java.util.Arrays;
 /**
  * 给定一个包含红色、白色和蓝色，一共n 个元素的数组，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
  * 此题中，我们使用整数 0、1 和 2 分别表示红色、白色和蓝色。
- * <p>
- * 示例 1：
  * 输入：nums = [2,0,2,1,1,0]
  * 输出：[0,0,1,1,2,2]
- * 示例 2：
  * 输入：nums = [2,0,1]
  * 输出：[0,1,2]
- * 示例 3：
  * 输入：nums = [0]
  * 输出：[0]
- * 示例 4：
  * 输入：nums = [1]
  * 输出：[1]
- * <p>
  * n == nums.length
  * 1 <= n <= 300
  * nums[i] 为 0、1 或 2
- * <p>
- * 进阶：
- * 你可以不使用代码库中的排序函数来解决这道题吗？
- * 你能想出一个仅使用常数空间的一趟扫描算法吗？
- * <p>
  * 链接：https://leetcode-cn.com/problems/sort-colors
  */
 public class Hot_75_SortColors_75 {
 
-    public static void sortColorsBySort(int[] nums) {
-        Arrays.sort(nums);
-    }
-
     public static void sortColors(int[] nums) {
         int L = 0;
         int R = nums.length - 1;
-        int F = 1;
-        while (F <= R) {
-            if (L < F && nums[F] == 0) {
-                LCUtil.swap(nums, L, F);
+        int mid = L + 1;
+        while (mid <= R) {
+            //  L 0 ... R match -> 0 移动到 L : 最小的数移动到左边
+            if (L < mid && nums[mid] == 0) {
+                LCUtil.swap(nums, L, mid);
                 L++;
-            } else if (R > F && nums[F] == 2) {
-                LCUtil.swap(nums, R, F);
+            } else if (R > mid && nums[mid] == 2) { // L 2 ... R match -> 2 移动到 R : 最大的数移动到右边
+                LCUtil.swap(nums, R, mid);
                 R--;
             } else {
-                if (nums[F] < nums[L]) {
-                    LCUtil.swap(nums, F, L);
-                } else if (nums[F] > nums[R]) {
-                    LCUtil.swap(nums, F, R);
+                //  左边的数比中间的还大, 两个位置上的数字交换
+                if (nums[mid] < nums[L]) {
+                    LCUtil.swap(nums, mid, L);
+                } else if (nums[mid] > nums[R]) { //  右边的数比中间的数还小, 交换
+                    LCUtil.swap(nums, mid, R);
                 } else {
-                    F++;
+                    //  数字相同无需排序, 移动游标, 找到需要排序的位置 -> 从 L+1 扫描到 R-1
+                    mid++;
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-        int[] nums = {2, 1, 0};
+        int[] nums = {2, 0, 2, 1, 1, 0};
         sortColors(nums);
-        print(nums);
-    }
-
-    public static void print(int[] nums) {
-        for (int num : nums) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+        LCUtil.print(nums);
     }
 }

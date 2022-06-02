@@ -1,7 +1,7 @@
 package leetcode.hot_100;
 
 /**
- * 给你一个字符串 s，找到 s 中最长的回文子串。
+ * 给你一个字符串 s，找到 s 中最长回文子串。
  * https://leetcode-cn.com/problems/longest-palindromic-substring/
  */
 public class Hot_5_LongestPalindrome {
@@ -24,29 +24,31 @@ public class Hot_5_LongestPalindrome {
         }
         //  奇数个字符和偶数个字符存在差异性, 统一处理一下
         String target = processSourceStr(s);
-        int left = 0;
-        int right = 0;
-        int max = 1;
-        for (int i = 1; i < target.length(); i++) {
-            //  双指针
-            int L = i - 1;
-            int R = i + 1;
-            //  控制指针扩充行为, 每一位都可以向两个边界扩充
+        int ansLeft = 0;
+        int ansRight = 0;
+
+        int palindromicMax = 1;
+        for (int midStr = 1; midStr < target.length(); midStr++) {
+            //  双指针 检测当前位置构成的回文串长度
+            int L = midStr - 1;
+            int R = midStr + 1;
+            //  越界case
             while (L >= 0 && R < target.length()) {
                 if (target.charAt(L) != target.charAt(R)) {
                     break;
                 }
-                //  当前得到的最大距离大于目前最大距离max, 更新
-                if ((R - L + 1) > max) {
-                    left = L / 2;
-                    right = R / 2;
-                    max = R - L + 1;
+                //  当前得到的最大距离大于目前最大距离max
+                if ((R - L + 1) > palindromicMax) {
+                    //  更新 max
+                    ansLeft = L / 2;
+                    ansRight = R / 2;
+                    palindromicMax = R - L + 1;
                 }
                 L--;
                 R++;
             }
         }
-        return s.substring(left, right);
+        return s.substring(ansLeft, ansRight);
     }
 
     /**
@@ -57,11 +59,10 @@ public class Hot_5_LongestPalindrome {
      */
     public static String processSourceStr(String s) {
         StringBuffer sb = new StringBuffer();
-        String shift_3 = "#";
         for (int i = 0; i < s.length(); i++) {
-            sb.append(shift_3).append(s.charAt(i));
+            sb.append("#").append(s.charAt(i));
         }
-        return sb.append(shift_3).toString();
+        return sb.append("#").toString();
     }
 
     public static void main(String[] args) {

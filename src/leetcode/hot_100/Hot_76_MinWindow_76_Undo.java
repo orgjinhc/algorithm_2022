@@ -12,28 +12,28 @@ import java.util.List;
  */
 public class Hot_76_MinWindow_76_Undo {
 
-    public static String minWindow(String s, String t) {
-        if (s.length() < t.length()) {
+    public static String minWindow(String source, String target) {
+        if (source.length() < target.length()) {
             return "";
         }
-        if (s.equals(t)) {
-            return s;
+        if (source.equals(target)) {
+            return source;
         }
-
-        if (t.length() == 1) {
-            int idx = s.indexOf(t);
+        if (target.length() == 1) {
+            int idx = source.indexOf(target);
             if (idx == -1) {
                 return "";
             }
-            return t;
+            return target;
         }
 
         int maxSize = 0;
         List<List<Integer>> levelList = new ArrayList<>();
 
         //  构建每个字符出现的位置信息
-        for (int i = 0; i < t.length(); i++) {
-            List<Integer> list = process(s, String.valueOf(t.charAt(i)));
+        for (int i = 0; i < target.length(); i++) {
+            List<Integer> list = process(source, String.valueOf(target.charAt(i)));
+            //  source 缺失字符情况
             if (list.size() == 0) {
                 return "";
             }
@@ -41,7 +41,6 @@ public class Hot_76_MinWindow_76_Undo {
             levelList.add(list);
         }
 
-        //  填充空位
         for (List<Integer> curList : levelList) {
             if (curList.size() == maxSize) {
                 continue;
@@ -54,16 +53,16 @@ public class Hot_76_MinWindow_76_Undo {
 
         int[] boundary = getBoundary(levelList);
         int len = boundary[1] - boundary[0] + 1;
-        int remaining = len - t.length();
-        return remaining >= 0 ? s.substring(boundary[0], boundary[1] + 1) : s.substring(boundary[0], boundary[1] - remaining + 1);
+        int remaining = len - target.length();
+        return remaining >= 0 ? source.substring(boundary[0], boundary[1] + 1) : source.substring(boundary[0], boundary[1] - remaining + 1);
     }
 
-    public static List<Integer> process(String s, String index) {
+    public static List<Integer> process(String source, String index) {
         List<Integer> ans = new ArrayList<>();
-        int idx = s.indexOf(index);
+        int idx = source.indexOf(index);
         while (idx != -1) {
             ans.add(idx);
-            idx = s.indexOf(index, idx + 1);
+            idx = source.indexOf(index, idx + 1);
         }
         return ans;
     }
@@ -100,7 +99,6 @@ public class Hot_76_MinWindow_76_Undo {
     public static List<List<Integer>> comboSource(List<List<Integer>> comboList, List<Integer> sourceList) {
         List<List<Integer>> ans = new ArrayList<>();
         for (Integer integer : sourceList) {
-
             for (List<Integer> subList : comboList) {
                 List<Integer> curAns = new ArrayList<>();
                 curAns.add(integer);

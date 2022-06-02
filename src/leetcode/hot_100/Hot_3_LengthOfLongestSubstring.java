@@ -22,15 +22,14 @@ public class Hot_3_LengthOfLongestSubstring {
             //  包含情况, 重复位置出现
             if (map.containsKey(charAt)) {
                 //  第一次出现位置
-                int firstDuplicateKey = map.get(charAt);
+                int firstIndex = map.get(charAt);
                 //  计算距离
                 ans = Math.max(ans, R - L);
                 //  窗口移动(重复位置下一位置)
-                L = L <= firstDuplicateKey ? firstDuplicateKey + 1 : L;
+                L = L <= firstIndex ? firstIndex + 1 : L;
             }
             map.put(charAt, R++);
         }
-        //  case 情况
         return Math.max(ans, R - L);
     }
 
@@ -68,7 +67,8 @@ public class Hot_3_LengthOfLongestSubstring {
     }
 
     public static void main(String[] args) {
-        String str = "abcdefa";
+        String str = "abcdefcba";
+        System.out.println(lengthOfLongestSubstring(str));
         System.out.println(lengthOfLongestSubstringByZ(str));
     }
 }

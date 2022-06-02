@@ -1,5 +1,7 @@
 package leetcode.hot_100;
 
+import leetcode.util.ListNode;
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -11,23 +13,6 @@ import java.util.PriorityQueue;
  */
 public class Hot_23_MergeKLists {
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     /**
      * 边界的处理
      *
@@ -35,34 +20,27 @@ public class Hot_23_MergeKLists {
      * @return
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        //  []
         if (null == lists || lists.length < 1) {
             return null;
         }
         PriorityQueue<ListNode> ans = new PriorityQueue<>(Comparator.comparingInt((o) -> o.val));
-        for (ListNode curNode : lists) {
-            while (curNode != null) {
-                ans.add(curNode);
-                curNode = curNode.next;
+        for (ListNode node : lists) {
+            while (node != null) {
+                ans.add(node);
+                node = node.next;
             }
         }
 
-        //  [[]]...[[][][]...]
         if (ans.isEmpty()) {
             return null;
         }
         ListNode head = ans.poll();
         ListNode pre = head;
         while (!ans.isEmpty()) {
-            ListNode next = ans.poll();
-            pre.next = next;
-            pre = next;
+            pre.next = ans.poll();
+            pre = pre.next;
         }
         pre.next = null;
         return head;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

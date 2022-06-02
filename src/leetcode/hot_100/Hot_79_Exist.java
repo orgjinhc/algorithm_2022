@@ -1,16 +1,21 @@
 package leetcode.hot_100;
 
 /**
- * 给定一个m x n 二维字符网格board 和一个字符串单词word 。如果word 存在于网格中，返回 true ；否则，返回 false 。
- * <p>
+ * 给定一个m x n 二维字符网格board 和一个字符串单词word.
+ * 如果word 存在于网格, 返回 true
+ * 否则，返回 false
  * 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
- * <p>
  * 链接：https://leetcode-cn.com/problems/word-search
  */
 public class Hot_79_Exist {
 
     /**
-     * 输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+     * 输入：board = [
+     * ["A","B","C","E"]
+     * ["S","F","C","S"]
+     * ["A","D","E","E"]
+     * ]
+     * word = "ABCCED"
      * 输出：true
      *
      * @param board
@@ -42,13 +47,13 @@ public class Hot_79_Exist {
      * @param board
      * @param row
      * @param col
-     * @param ans
-     * @param k
+     * @param target
+     * @param searchIndex
      */
-    private static boolean f(char[][] board, int row, int col, char[] ans, int k) {
+    private static boolean f(char[][] board, int row, int col, char[] target, int searchIndex) {
         //  设置边界条件
         //  case1:如果k的长度等于ans的长度, 则认为找到了答案, 或已经找到满足要求的字符串
-        if (k == ans.length) {
+        if (searchIndex == target.length) {
             return true;
         }
 
@@ -58,17 +63,19 @@ public class Hot_79_Exist {
         }
 
         //  case3:没有找到答案返回false
-        if (board[row][col] != ans[k]) {
+        if (board[row][col] != target[searchIndex]) {
             return false;
         }
 
-        //  case4:当前位置字符和ans k位置的字符相同, 继续从当前位置的上下左右四个方向继续寻找下一个字符
-        //  设置现场, 防止走回头路
+        //  case4: board[row][col] 字符与 target searchIndex 位置的字符相同, 继续从 row, col 的上下左右四个方向继续寻找下一个字符
         char tmp = board[row][col];
+        //  设置现场, 防止走回头路
         board[row][col] = 0;
         //  DFS流程
-        boolean find = f(board, row + 1, col, ans, k + 1) || f(board, row - 1, col, ans, k + 1)
-                || f(board, row, col + 1, ans, k + 1) || f(board, row, col - 1, ans, k + 1);
+        boolean find = f(board, row + 1, col, target, searchIndex + 1)
+                || f(board, row - 1, col, target, searchIndex + 1)
+                || f(board, row, col + 1, target, searchIndex + 1)
+                || f(board, row, col - 1, target, searchIndex + 1);
 
         //  最后恢复现场
         board[row][col] = tmp;

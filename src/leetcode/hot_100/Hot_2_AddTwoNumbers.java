@@ -34,11 +34,11 @@ public class Hot_2_AddTwoNumbers {
             }
 
             int sum = base + num1 + num2;
+            //  设置是否进位
             base = sum / 10;
-            //  设置返回值
+            //  设置两数相加之和
             pre.val = sum % 10;
 
-            //  保证两个链表都为null的情况, 无法继续创建下一节点
             if (l1 != null || l2 != null) {
                 pre.next = new ListNode();
                 pre = pre.next;
@@ -53,13 +53,13 @@ public class Hot_2_AddTwoNumbers {
     }
 
     public static void main(String[] args) {
-        ListNode head1 = new ListNode(9);
-        ListNode head2 = new ListNode(9);
-        ListNode head3 = new ListNode(9);
-        ListNode head4 = new ListNode(9);
-        ListNode head5 = new ListNode(9);
-        ListNode head6 = new ListNode(9);
-        ListNode head7 = new ListNode(9);
+        ListNode head1 = new ListNode(1);
+        ListNode head2 = new ListNode(2);
+        ListNode head3 = new ListNode(3);
+        ListNode head4 = new ListNode(4);
+        ListNode head5 = new ListNode(5);
+        ListNode head6 = new ListNode(6);
+        ListNode head7 = new ListNode(7);
         head1.next = head2;
         head2.next = head3;
         head3.next = head4;
@@ -67,10 +67,10 @@ public class Hot_2_AddTwoNumbers {
         head5.next = head6;
         head6.next = head7;
 
-        ListNode tail1 = new ListNode(9);
-        ListNode tail2 = new ListNode(9);
-        ListNode tail3 = new ListNode(9);
-        ListNode tail4 = new ListNode(9);
+        ListNode tail1 = new ListNode(1);
+        ListNode tail2 = new ListNode(2);
+        ListNode tail3 = new ListNode(3);
+        ListNode tail4 = new ListNode(4);
         tail1.next = tail2;
         tail2.next = tail3;
         tail3.next = tail4;

@@ -1,10 +1,16 @@
 package leetcode.hot_100;
 
+import base.tree.TreeNode;
+import com.sun.jmx.remote.internal.ArrayQueue;
+import leetcode.daily.medium.LCP_3_robot;
+import leetcode.util.LCUtil;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 给定一个二叉树，检查它是否是镜像对称的。
+ * 给定一个二 叉树，检查它是否是镜像对称的。
  * 例如，二叉树[1,2,2,3,4,4,3] 是对称的。
  * 1
  * / \
@@ -23,27 +29,6 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/symmetric-tree
  */
 public class Hot_101_IsSymmetric_101 {
-
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 
     /**
      * 递归方式
@@ -79,37 +64,31 @@ public class Hot_101_IsSymmetric_101 {
             return true;
         }
 
-        List<Integer> ans = new ArrayList<>();
-        midIter(root, ans);
-        if (ans.size() % 2 == 0) {
-            return false;
-        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.push(root.left);
+        queue.push(root.right);
+        while (!queue.isEmpty()) {
+            TreeNode left = queue.pop();
+            TreeNode right = queue.pop();
 
-        int M = (0 + ans.size() - 1) / 2;
-        int L = M - 1;
-        int R = M + 1;
+            if (left == null && right == null) {
+                continue;
+            }
 
-        for (int i = 0; i < M; i++) {
-            if (ans.get(L) != ans.get(R)) {
+            if (left == null || right == null) {
                 return false;
             }
+
+            if (left.val != right.val) {
+                return false;
+            }
+
+            queue.push(left.left);
+            queue.push(right.right);
+            queue.push(left.right);
+            queue.push(right.left);
         }
         return true;
-    }
-
-    /**
-     * 中顺遍历
-     *
-     * @param root
-     * @param ans
-     */
-    private static void midIter(TreeNode root, List<Integer> ans) {
-        if (root == null) {
-            return;
-        }
-        midIter(root.left, ans);
-        ans.add(root.val);
-        midIter(root.right, ans);
     }
 
     public static void main(String[] args) {
@@ -117,13 +96,12 @@ public class Hot_101_IsSymmetric_101 {
         TreeNode left = new TreeNode(2);
         TreeNode right = new TreeNode(2);
         TreeNode leftLeft = new TreeNode(2);
-//        TreeNode leftRight = new TreeNode(null);
         TreeNode rightLeft = new TreeNode(2);
         root.left = left;
         root.right = right;
         left.left = leftLeft;
-//        left.right = leftRight;
         right.left = rightLeft;
         System.out.println(isSymmetric1(root));
+        System.out.println(isSymmetric2(root));
     }
 }

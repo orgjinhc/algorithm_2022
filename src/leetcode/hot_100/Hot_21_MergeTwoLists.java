@@ -55,9 +55,8 @@ public class Hot_21_MergeTwoLists {
         ListNode head = ans.poll();
         ListNode pre = head;
         while (!ans.isEmpty()) {
-            ListNode tmp = ans.poll();
-            pre.next = tmp;
-            pre = tmp;
+            pre.next = ans.poll();
+            pre = pre.next;
         }
         pre.next = null;
         return head;

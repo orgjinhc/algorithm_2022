@@ -22,16 +22,13 @@ public class Hot_22_GenerateParenthesis {
         return ans;
     }
 
-
     public static void dfs(String path, int left, int right, List<String> ans) {
         if (left == 0 && right == 0) {
             ans.add(path);
         } else {
-
             if (left > right) {
                 return;
             }
-
             if (left > 0) {
                 dfs(path + "(", left - 1, right, ans);
             }

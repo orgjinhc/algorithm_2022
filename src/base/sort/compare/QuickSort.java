@@ -5,8 +5,11 @@ import leetcode.util.LCUtil;
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] nums = {2, 1, 3, 4, 7, 6, 9, 7, 8, 7};
+        int[] nums = {2, 1, 3, 4, 7, 6, 9, 1, 8, 7};
         quickSort(nums, 0, nums.length - 1);
+        LCUtil.print(nums);
+        System.out.println();
+        splitNum2(nums);
         LCUtil.print(nums);
     }
 
@@ -26,29 +29,26 @@ public class QuickSort {
             return;
         }
         //  保证 mid 左右有序
-        int mid = partition(arr, L, R);
+        int partition = partition(arr, L, R);
         //  保证左边有序
-        quickSort(arr, L, mid - 1);
+        quickSort(arr, L, partition - 1);
         //  保证右边有序
-        quickSort(arr, mid + 1, R);
+        quickSort(arr, partition + 1, R);
     }
 
     /**
      * 边界点
      *
      * @param arr
-     * @param L
-     * @param R
+     * @param L   边界
+     * @param R   边界
      * @return
      */
     public static int partition(int[] arr, int L, int R) {
-        if (L >= R) {
-            return L;
-        }
         int lessEquals = L - 1;
         while (L < R) {
             if (arr[L] <= arr[R]) {
-                LCUtil.swap(arr, L, ++lessEquals);
+                LCUtil.swap(arr, ++lessEquals, L);
             }
             L++;
         }
@@ -60,17 +60,16 @@ public class QuickSort {
     /**
      * 荷兰国旗问题
      * 2步
-     * - 划分小于等于区域
      * - 小于情况小于区域和源数组进行交互，两个指针分别++
      * - 大于情况源数组指针++即可
      *
      * @param arr
      */
     public static void splitNum2(int[] arr) {
+        int index = 0;
         int N = arr.length - 1;
         int lessEqualsR = -1;
-        int moreEqualsR = arr.length - 1;
-        int index = 0;
+        int moreEqualsR = N - 1;
         while (index < moreEqualsR) {
             if (arr[index] < arr[N]) {
                 LCUtil.swap(arr, ++lessEqualsR, index++);
@@ -87,15 +86,16 @@ public class QuickSort {
     /**
      * 荷兰国旗问题
      * 2步
-     * - 划分小于等于区域
+     * 划分小于等于区域
+     * <p>
      * - 小于情况小于区域和源数组进行交互，两个指针分别++
      * - 大于情况源数组指针++即可
      *
      * @param arr
      */
     public static void splitNum(int[] arr) {
-        int lessEqualsR = -1;
         int index = 0;
+        int lessEqualsR = -1;
         int N = arr.length - 1;
         while (index < N) {
             if (arr[index] <= arr[N - 1]) {
